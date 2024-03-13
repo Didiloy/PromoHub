@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PromoHub</string>
+    <string name="home_show_all_deals">Voir tout les deals</string>
+    <string name="home_customize_search">Personnaliser la recherche</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PromoHub</string>
+    <string name="home_show_all_deals">Show all deals</string>
+    <string name="home_customize_search">Customize search</string>
+</resources>
