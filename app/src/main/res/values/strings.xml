@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">PromoHub</string>
+    <string name="app_name" translatable="false">PromoHub</string>
     <string name="home_show_all_deals">Show all deals</string>
     <string name="home_customize_search">Customize search</string>
+    <string name="image_home_content_description" translatable="false">image_home</string>
+    <string name="let_s_find_your_next_game">Let\'s find your next game</string>
+    <string name="show_deals_with_saved_filters">Show deals with saved filters</string>
+    <string name="button_parameter_speakable_text">parameters</string>
 </resources>
