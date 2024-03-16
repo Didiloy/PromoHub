@@ -5,4 +5,5 @@
     <string name="let_s_find_your_next_game">Trouvons votre prochain jeu</string>
     <string name="show_deals_with_saved_filters">Voir les deals avec les paramètres enregistrés</string>
     <string name="button_parameter_speakable_text">parametres</string>
+    <string name="button_quit">Quitter</string>
 </resources>
