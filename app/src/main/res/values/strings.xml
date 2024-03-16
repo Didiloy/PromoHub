@@ -7,4 +7,8 @@
     <string name="show_deals_with_saved_filters">Show deals with saved filters</string>
     <string name="button_parameter_speakable_text">parameters</string>
     <string name="button_quit">Quit</string>
+    <string name="select_your_store">Select your store</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="logo_of_store">logo of store</string>
+    <string name="error_loading_store">Failed to fetch stores, please check your internet connection and try again.</string>
 </resources>

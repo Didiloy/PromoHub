@@ -1,5 +1,6 @@
 package com.github.didiloy.promohub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,9 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.github.didiloy.promohub.selectstore.SelectStore;
+
+import java.util.logging.Logger;
+
 public class MainActivity extends AppCompatActivity {
 
+    public static Logger logger = Logger.getLogger("PromoHubLogger");
+
     Button button_quit;
+    Button button_customize_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         button_quit = findViewById(R.id.button_quit);
+        button_customize_search = findViewById(R.id.button_customize_search);
+
+    }
+
+    public void onButtonCustomizeSearchClick(View view) {
+        Intent intent = new Intent(this, SelectStore.class);
+        startActivity(intent);
     }
 
     public void onButtonQuitClick(View view) {

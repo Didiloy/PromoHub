@@ -133,6 +133,7 @@
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="16dp"
                         android:backgroundTint="?attr/colorTertiaryContainer"
+                        android:onClick="onButtonCustomizeSearchClick"
                         android:text="@string/home_customize_search"
                         android:textColor="?attr/colorOnTertiaryContainer"
                         app:layout_constraintBottom_toBottomOf="parent"

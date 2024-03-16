@@ -6,7 +6,11 @@ PromoHub uses the CheapShark API to find and track game deals but is not affilia
 PromoHub has no control over the prices, it simply plugs into the CheapShark API and displays the information as is.
 
 ### Credits
-Image by Leni Kauffman on [blush.design](https://blush.design/)
+- Home Image by Leni Kauffman on [blush.design](https://blush.design/)
+- Image not found by [Freepik](https://www.freepik.com)
+- Gson for JSON parsing
+- okhttp3 for network requests
+- Glide for image loading
 
 ### TODO
 - [ ] Page to filter stores
