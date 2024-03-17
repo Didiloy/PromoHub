@@ -11,4 +11,6 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="logo_of_store">logo of store</string>
     <string name="error_loading_store">Failed to fetch stores, please check your internet connection and try again.</string>
+    <string name="filter_by_alphabetical_order">Sort by alphabetical order</string>
+    <string name="next">Next</string>
 </resources>

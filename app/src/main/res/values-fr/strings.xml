@@ -9,4 +9,6 @@
     <string name="select_your_store">Selectionnez vos magasins</string>
     <string name="logo_of_store">logo du magasin</string>
     <string name="error_loading_store">Echec du chargement des magasins. Verifiez votre connection internet et réessayez.</string>
+    <string name="filter_by_alphabetical_order">Trier par ordre alphabétique</string>
+    <string name="next">Suivant</string>
 </resources>

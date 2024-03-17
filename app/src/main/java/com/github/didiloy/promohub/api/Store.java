@@ -1,7 +1,5 @@
 package com.github.didiloy.promohub.api;
 
-
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.Map;

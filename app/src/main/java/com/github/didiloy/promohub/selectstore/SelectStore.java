@@ -1,7 +1,7 @@
 package com.github.didiloy.promohub.selectstore;
 
 import android.os.Bundle;
-import android.widget.ListView;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +17,7 @@ import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Store;
 import com.github.didiloy.promohub.api.StoreFetcherCallable;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -30,6 +31,8 @@ public class SelectStore extends AppCompatActivity {
 
     TextView textView_error;
 
+    SwitchMaterial switch_alphabetical_order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class SelectStore extends AppCompatActivity {
         });
         recyclerView = findViewById(R.id.recycler_view_store);
         textView_error = findViewById(R.id.textView_error);
+        switch_alphabetical_order = findViewById(R.id.switchMaterial);
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
@@ -57,5 +61,15 @@ public class SelectStore extends AppCompatActivity {
         } finally {
             executorService.shutdown();
         }
+    }
+
+    public void onSwitchAlphabeticalOrderClicked(View view) {
+        if (switch_alphabetical_order.isChecked()) {
+            CheapShark.sortStoresAlphabetically(stores);
+        } else {
+            CheapShark.sortStoresById(stores);
+        }
+        if(recyclerView.getAdapter() != null)
+            recyclerView.getAdapter().notifyItemRangeChanged(0, stores.length);
     }
 }
