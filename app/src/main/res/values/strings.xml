@@ -8,9 +8,20 @@
     <string name="button_parameter_speakable_text">parameters</string>
     <string name="button_quit">Quit</string>
     <string name="select_your_store">Select your store</string>
-<!-- TODO: Remove or change this placeholder text -->
     <string name="logo_of_store">logo of store</string>
     <string name="error_loading_store">Failed to fetch stores, please check your internet connection and try again.</string>
     <string name="filter_by_alphabetical_order">Sort by alphabetical order</string>
     <string name="next">Next</string>
+    <string name="deals_parameters">Deals parameters</string>
+    <string name="number_of_deals">Number of deals:</string>
+    <string name="sort_by">Sort deals by</string>
+    <string name="select_deals_radio_button_DealRating">DealRating</string>
+    <item name="select_deals_radio_button_Title" type="string">Title</item>
+    <item name="select_deals_radio_button_Savings" type="string">Savings</item>
+    <item name="select_deals_radio_button_Price" type="string">Price</item>
+    <item name="select_deals_radio_button_Metacritic" translatable="false" type="string">Metacritic</item>
+    <item name="select_deals_radio_button_Reviews" type="string">Reviews</item>
+    <item name="select_deals_radio_button_Release" type="string">Release</item>
+    <item name="select_deals_radio_button_Store" type="string">Store</item>
+    <item name="select_deals_radio_button_Recent" type="string">Recent</item>
 </resources>

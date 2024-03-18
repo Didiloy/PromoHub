@@ -15,10 +15,13 @@
         android:theme="@style/Theme.PromoHub"
         tools:targetApi="31">
         <activity
+            android:name=".select_deals_parameters.SelectDealsParametersActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelectStoreItem"
             android:exported="false" />
         <activity
-            android:name=".selectstore.SelectStore"
+            android:name=".select_store.SelectStoreActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,4 @@
-package com.github.didiloy.promohub.selectstore;
+package com.github.didiloy.promohub.select_store;
 
 import android.content.Context;
 import android.view.LayoutInflater;

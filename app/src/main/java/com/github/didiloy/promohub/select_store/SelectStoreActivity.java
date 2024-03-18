@@ -1,4 +1,4 @@
-package com.github.didiloy.promohub.selectstore;
+package com.github.didiloy.promohub.select_store;
 
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class SelectStore extends AppCompatActivity {
+public class SelectStoreActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Store[] stores;

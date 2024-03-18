@@ -11,7 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.github.didiloy.promohub.selectstore.SelectStore;
+import com.github.didiloy.promohub.select_deals_parameters.SelectDealsParametersActivity;
+import com.github.didiloy.promohub.select_store.SelectStoreActivity;
 
 import java.util.logging.Logger;
 
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonCustomizeSearchClick(View view) {
-        Intent intent = new Intent(this, SelectStore.class);
-        startActivity(intent);
+        Intent intent = new Intent(this, SelectStoreActivity.class);
+        Intent intent2 = new Intent(this, SelectDealsParametersActivity.class);
+        startActivity(intent2);
     }
 
     public void onButtonQuitClick(View view) {

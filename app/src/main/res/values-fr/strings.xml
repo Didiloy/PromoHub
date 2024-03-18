@@ -11,4 +11,15 @@
     <string name="error_loading_store">Echec du chargement des magasins. Verifiez votre connection internet et réessayez.</string>
     <string name="filter_by_alphabetical_order">Trier par ordre alphabétique</string>
     <string name="next">Suivant</string>
+    <string name="deals_parameters">Paramètres des deals</string>
+    <string name="number_of_deals">Nombre de deals:</string>
+    <string name="sort_by">Trier les deals par</string>
+    <string name="select_deals_radio_button_DealRating">Note du deal</string>
+    <string name="select_deals_radio_button_Title">Titre</string>
+    <string name="select_deals_radio_button_Savings">Economie</string>
+    <string name="select_deals_radio_button_Price">Prix</string>
+    <string name="select_deals_radio_button_Reviews">Critiques</string>
+    <string name="select_deals_radio_button_Release">Date de sortie</string>
+    <string name="select_deals_radio_button_Store">Magasin</string>
+    <string name="select_deals_radio_button_Recent">Récent</string>
 </resources>
