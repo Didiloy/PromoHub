@@ -53,7 +53,7 @@ public class SelectStore extends AppCompatActivity {
             stores = future.get();
             //initialise the isChecked field of the store
             for (Store store : stores) {
-                store.isChecked = false;
+                store.isChecked = true;
             }
             stores = CheapShark.filterActiveStores(stores);
             StoreAdapter storeAdapter = new StoreAdapter(this, stores);
