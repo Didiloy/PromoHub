@@ -51,6 +51,10 @@ public class SelectStore extends AppCompatActivity {
         Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
         try {
             stores = future.get();
+            //initialise the isChecked field of the store
+            for (Store store : stores) {
+                store.isChecked = false;
+            }
             stores = CheapShark.filterActiveStores(stores);
             StoreAdapter storeAdapter = new StoreAdapter(this, stores);
             recyclerView.setAdapter(storeAdapter);

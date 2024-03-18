@@ -38,12 +38,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull StoreAdapter.ViewHolder holder, int position) {
         holder.textview_store_name.setText(stores[position].storeName);
+        holder.checkBox.setOnCheckedChangeListener(null);
+        holder.checkBox.setChecked(stores[position].isChecked);
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> stores[position].isChecked = isChecked);
         String imageUrl = CheapShark.IMG_BASE_URL + stores[position].images.get("logo");
-        Glide.with(holder.itemView.getContext())
-                .load(imageUrl)
-                .placeholder(R.drawable.image_not_found)
-                .error(R.drawable.image_not_found)
-                .into(holder.imageView_logo);
+        Glide.with(holder.itemView.getContext()).load(imageUrl).placeholder(R.drawable.image_not_found).error(R.drawable.image_not_found).into(holder.imageView_logo);
     }
 
     @Override
