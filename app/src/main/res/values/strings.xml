@@ -20,10 +20,15 @@
     <string name="ascending_abbreviation">asc</string>
     <string name="descending_abbreviation">desc</string>
     <string name="max_age_of_deals_in_hours">Max age of deals (in hours):</string>
+    <string name="deals_prices_parameters">Deals Prices Parameters</string>
+    <string name="price_range">Price range:</string>
+    <string name="see_all_prices">See all prices</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>
-    <item name="select_deals_radio_button_Metacritic" translatable="false" type="string">Metacritic</item>
+    <item name="select_deals_radio_button_Metacritic" translatable="false" type="string">
+        Metacritic
+    </item>
     <item name="select_deals_radio_button_Reviews" type="string">Reviews</item>
     <item name="select_deals_radio_button_Release" type="string">Release</item>
     <item name="select_deals_radio_button_Store" type="string">Store</item>

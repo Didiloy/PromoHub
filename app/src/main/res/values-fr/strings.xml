@@ -26,4 +26,7 @@
     <string name="ascending_abbreviation">asc</string>
     <string name="descending_abbreviation">desc</string>
     <string name="max_age_of_deals_in_hours">Age maximum des deals (en heures):</string>
+    <string name="deals_prices_parameters">Paramètres des prix des deals</string>
+    <string name="price_range">Intervalle de prix:</string>
+    <string name="see_all_prices">Voir tout les prix</string>
 </resources>
