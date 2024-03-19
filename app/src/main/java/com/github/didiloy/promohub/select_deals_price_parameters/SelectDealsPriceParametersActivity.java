@@ -1,6 +1,8 @@
 package com.github.didiloy.promohub.select_deals_price_parameters;
 
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,12 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
     TextView min_price_value;
     SwitchMaterial switch_price;
 
+    CheckBox checkBox_deal_parameter_aaa;
+    CheckBox checkBox_deal_parameter_on_sale;
+
+    RatingBar rating_metacritic;
+    RatingBar rating_steam;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,10 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
         max_price_value = findViewById(R.id.max_price_value);
         min_price_value = findViewById(R.id.min_price_value);
         switch_price = findViewById(R.id.switch_all_prices);
+        checkBox_deal_parameter_aaa = findViewById(R.id.checkBox_deal_parameter_aaa);
+        checkBox_deal_parameter_on_sale = findViewById(R.id.checkBox_deal_parameter_on_sale);
+        rating_metacritic = findViewById(R.id.rating_metacritic);
+        rating_steam = findViewById(R.id.rating_steam);
 
         slider_number_of_deals.setValues(0f, 25f);
         min_price_value.setText(String.valueOf(Math.round(slider_number_of_deals.getValues().get(0))));

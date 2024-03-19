@@ -29,4 +29,8 @@
     <string name="deals_prices_parameters">Paramètres des prix des deals</string>
     <string name="price_range">Intervalle de prix:</string>
     <string name="see_all_prices">Voir tout les prix</string>
+    <string name="deal_parameter_aaa">AAA</string>
+    <string name="currently_on_sale">En promo actuellement</string>
+    <string name="rating">Notation:</string>
+    <string name="finish">Terminer</string>
 </resources>

@@ -23,6 +23,11 @@
     <string name="deals_prices_parameters">Deals Prices Parameters</string>
     <string name="price_range">Price range:</string>
     <string name="see_all_prices">See all prices</string>
+    <string name="deal_parameter_aaa">AAA</string>
+    <string name="currently_on_sale">Currently on sale</string>
+    <string name="rating">Rating:</string>
+    <string name="steam" translatable="false">Steam</string>
+    <string name="finish">Finish</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>

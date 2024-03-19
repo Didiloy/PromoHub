@@ -1,6 +1,8 @@
 package com.github.didiloy.promohub.select_deals_parameters;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
+import com.github.didiloy.promohub.select_deals_price_parameters.SelectDealsPriceParametersActivity;
 import com.google.android.material.slider.Slider;
 
 public class SelectDealsParametersActivity extends AppCompatActivity {
@@ -48,6 +51,7 @@ public class SelectDealsParametersActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //get the selected stores from the previous activity
         if (getIntent().getStringExtra("selectedStores") != null)
             selectedStoresFromPreviousActivity = getIntent().getStringExtra("selectedStores");
         else selectedStoresFromPreviousActivity = "";
@@ -82,5 +86,15 @@ public class SelectDealsParametersActivity extends AppCompatActivity {
 
         radio_button_DealRating.setChecked(true);
         radio_button_Descending.setChecked(true);
+    }
+
+    public void onButtonNextClicked(View v){
+        Intent intent = new Intent(this, SelectDealsPriceParametersActivity.class);
+        intent.putExtra("selectedStores", selectedStoresFromPreviousActivity);
+        intent.putExtra("numberOfDeals", (int) slider_number_of_deals.getValue());
+        intent.putExtra("maxAgeOfDeals", (int) slider_max_age_of_deals.getValue());
+//        intent.putExtra("sortBy", getSortBy());
+//        intent.putExtra("sortOrder", getSortOrder());
+        startActivity(intent);
     }
 }
