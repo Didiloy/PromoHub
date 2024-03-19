@@ -106,6 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:backgroundTint="?attr/colorPrimary"
+        android:onClick="onNextButtonClick"
         android:text="@string/next"
         android:textColor="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

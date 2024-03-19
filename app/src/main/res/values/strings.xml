@@ -16,6 +16,10 @@
     <string name="number_of_deals">Number of deals:</string>
     <string name="sort_by">Sort deals by</string>
     <string name="select_deals_radio_button_DealRating">DealRating</string>
+    <string name="sort_direction">Sort direction:</string>
+    <string name="ascending_abbreviation">asc</string>
+    <string name="descending_abbreviation">desc</string>
+    <string name="max_age_of_deals_in_hours">Max age of deals (in hours):</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>

@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonCustomizeSearchClick(View view) {
         Intent intent = new Intent(this, SelectStoreActivity.class);
-        Intent intent2 = new Intent(this, SelectDealsParametersActivity.class);
-        startActivity(intent2);
+        startActivity(intent);
     }
 
     public void onButtonQuitClick(View view) {

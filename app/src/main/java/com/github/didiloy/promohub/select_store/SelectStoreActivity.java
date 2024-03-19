@@ -1,7 +1,9 @@
 package com.github.didiloy.promohub.select_store;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +19,7 @@ import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Store;
 import com.github.didiloy.promohub.api.StoreFetcherCallable;
+import com.github.didiloy.promohub.select_deals_parameters.SelectDealsParametersActivity;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.concurrent.ExecutionException;
@@ -33,6 +36,8 @@ public class SelectStoreActivity extends AppCompatActivity {
 
     SwitchMaterial switch_alphabetical_order;
 
+    Button nextButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class SelectStoreActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_store);
         textView_error = findViewById(R.id.textView_error);
         switch_alphabetical_order = findViewById(R.id.switchMaterial);
+        nextButton = findViewById(R.id.button);
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
@@ -75,5 +81,24 @@ public class SelectStoreActivity extends AppCompatActivity {
         }
         if(recyclerView.getAdapter() != null)
             recyclerView.getAdapter().notifyItemRangeChanged(0, stores.length);
+    }
+
+    public String getListOfSelectedStores(){
+        StringBuilder selectedStores = new StringBuilder();
+        for (Store store : stores) {
+            if (store.isChecked) {
+                selectedStores.append(store.storeID).append(",");
+            }
+        }
+        if (selectedStores.length() > 0) {
+            selectedStores.deleteCharAt(selectedStores.length() - 1);
+        }
+        return selectedStores.toString();
+    }
+
+    public void onNextButtonClick(View v){
+        Intent intent = new Intent(this, SelectDealsParametersActivity.class);
+        intent.putExtra("selectedStores", getListOfSelectedStores());
+        startActivity(intent);
     }
 }

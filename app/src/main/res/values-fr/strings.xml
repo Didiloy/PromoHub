@@ -22,4 +22,8 @@
     <string name="select_deals_radio_button_Release">Date de sortie</string>
     <string name="select_deals_radio_button_Store">Magasin</string>
     <string name="select_deals_radio_button_Recent">Récent</string>
+    <string name="sort_direction">Tri:</string>
+    <string name="ascending_abbreviation">asc</string>
+    <string name="descending_abbreviation">desc</string>
+    <string name="max_age_of_deals_in_hours">Age maximum des deals (en heures):</string>
 </resources>
