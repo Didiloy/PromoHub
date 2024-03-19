@@ -88,13 +88,36 @@ public class SelectDealsParametersActivity extends AppCompatActivity {
         radio_button_Descending.setChecked(true);
     }
 
-    public void onButtonNextClicked(View v){
+    public void onButtonNextClicked(View v) {
         Intent intent = new Intent(this, SelectDealsPriceParametersActivity.class);
         intent.putExtra("selectedStores", selectedStoresFromPreviousActivity);
         intent.putExtra("numberOfDeals", (int) slider_number_of_deals.getValue());
         intent.putExtra("maxAgeOfDeals", (int) slider_max_age_of_deals.getValue());
-//        intent.putExtra("sortBy", getSortBy());
-//        intent.putExtra("sortOrder", getSortOrder());
+        intent.putExtra("sortBy", getSortBy());
+        intent.putExtra("sortOrder", getSortOrder());
         startActivity(intent);
+    }
+
+    private String getSortBy() {
+        int selectedId = radio_group_sort_by.getCheckedRadioButtonId();
+        if (selectedId == -1) return "";
+
+        //cannot use switch statement because the radio buttons are not final
+        if (selectedId == radio_button_DealRating.getId()) return "DealRating";
+        if (selectedId == radio_button_Title.getId()) return "Title";
+        if (selectedId == radio_button_Savings.getId()) return "Savings";
+        if (selectedId == radio_button_Price.getId()) return "Price";
+        if (selectedId == radio_button_Store.getId()) return "Store";
+        if (selectedId == radio_button_Metacritic.getId()) return "Metacritic";
+        if (selectedId == radio_button_Reviews.getId()) return "Reviews";
+        if (selectedId == radio_button_Release.getId()) return "Release";
+        if (selectedId == radio_button_Recent.getId()) return "Recent";
+        return ""; //default
+    }
+
+    private String getSortOrder(){
+        if(radio_button_Ascending.isChecked()) return "0";
+        if(radio_button_Descending.isChecked()) return "1";
+        return ""; //default
     }
 }

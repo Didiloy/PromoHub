@@ -28,6 +28,7 @@
     <string name="rating">Rating:</string>
     <string name="steam" translatable="false">Steam</string>
     <string name="finish">Finish</string>
+    <string name="deals">Deals</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>

@@ -33,4 +33,5 @@
     <string name="currently_on_sale">En promo actuellement</string>
     <string name="rating">Notation:</string>
     <string name="finish">Terminer</string>
+    <string name="deals">Promos</string>
 </resources>
