@@ -13,7 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.results.ResultsActivity;
 import com.google.android.material.slider.RangeSlider;
