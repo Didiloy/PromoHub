@@ -20,6 +20,8 @@ public class CheapShark {
     public static final String STORES = "stores";
     public static final String IMG_BASE_URL = "https://www.cheapshark.com";
 
+    public static final String REDIRECT_BASE_URL = "https://www.cheapshark.com/redirect?dealID=";
+
     public static Store[] stores;
 
     public static Store[] getStores() {

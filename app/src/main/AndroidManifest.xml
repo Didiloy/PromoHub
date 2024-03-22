@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PromoHub"
         tools:targetApi="31">
         <activity
+            android:name=".results.DealDetail"
+            android:exported="false" />
+        <activity
             android:name=".results.ResultsActivity"
             android:exported="false" />
         <activity

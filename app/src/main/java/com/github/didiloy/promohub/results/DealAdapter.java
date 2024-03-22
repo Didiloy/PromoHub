@@ -1,6 +1,9 @@
 package com.github.didiloy.promohub.results;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +46,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
         //textView
         holder.textview_game_title.setText(deals[position].title);
         holder.textview_deal_store.setText(CheapShark.getStoreNameById(deals[position].storeID));
-        holder.deal_price.setText(deals[position].salePrice + "€");
+        holder.deal_price.setText(deals[position].salePrice + "$");
 
         //image
         String imageUrl = deals[position].thumb;
@@ -52,10 +55,11 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
                 .error(R.drawable.image_not_found)
                 .into(holder.imageView_game_hero);
 
-        //button
-//        holder.button_view_deal.setOnClickListener(v -> {
-//            MainActivity.logger.info("Button clicked");
-//        });
+        holder.cardView_deal_item.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DealDetail.class);
+            intent.putExtra("deal", deals[position]);
+            startActivity(context, intent, null);
+        });
     }
 
     @Override
@@ -69,9 +73,11 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
         TextView textview_game_title;
         TextView textview_deal_store;
         TextView deal_price;
+        CardView cardView_deal_item;
 
         public ViewHolder(@NonNull android.view.View itemView) {
             super(itemView);
+            cardView_deal_item = itemView.findViewById(R.id.cardView_deal_item);
             imageView_game_hero = itemView.findViewById(R.id.imageView_game_hero);
             textview_game_title = itemView.findViewById(R.id.textview_game_title);
             textview_deal_store = itemView.findViewById(R.id.textview_deal_store);

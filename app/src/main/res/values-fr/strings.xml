@@ -38,4 +38,6 @@
     <string name="game_hero">game_hero</string>
     <string name="deals_details">Détails</string>
     <string name="view_deal_details">voir les détails du deal</string>
+    <string name="see_deal">Voir le deal</string>
+    <string name="save_deal">Sauvegarder le deal</string>
 </resources>

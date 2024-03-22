@@ -33,6 +33,8 @@
     <string name="game_hero">game_hero</string>
     <string name="deals_details">Details</string>
     <string name="view_deal_details">view deal details</string>
+    <string name="see_deal">See deal</string>
+    <string name="save_deal">Save deal</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>
