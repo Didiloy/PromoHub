@@ -24,7 +24,7 @@
             android:name=".select_deals_parameters.SelectDealsParametersActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectStoreItem"
+            android:name=".results.AllDealsActivity"
             android:exported="false" />
         <activity
             android:name=".select_store.SelectStoreActivity"

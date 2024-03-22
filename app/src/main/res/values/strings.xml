@@ -29,6 +29,10 @@
     <string name="steam" translatable="false">Steam</string>
     <string name="finish">Finish</string>
     <string name="deals">Deals</string>
+    <string name="promohub_disclaimer">Results powered by the CheapShark API.</string>
+    <string name="game_hero">game_hero</string>
+    <string name="deals_details">Details</string>
+    <string name="view_deal_details">view deal details</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>

@@ -1,13 +1,81 @@
 package com.github.didiloy.promohub.api;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.github.didiloy.promohub.MainActivity;
+import com.github.didiloy.promohub.R;
+import com.github.didiloy.promohub.select_store.StoreAdapter;
+
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CheapShark {
     public static final String BASE_URL = "https://www.cheapshark.com/api/1.0/";
     public static final String DEALS = "deals";
     public static final String STORES = "stores";
     public static final String IMG_BASE_URL = "https://www.cheapshark.com";
+
+    public static Store[] stores;
+
+    public static Store[] getStores() {
+        if(stores == null) {
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
+            Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
+            try {
+                stores = future.get();
+                //initialise the isChecked field of the store
+                for (Store store : stores) {
+                    store.isChecked = true;
+                }
+                stores = CheapShark.filterActiveStores(stores);
+            } catch (InterruptedException | ExecutionException e) {
+                MainActivity.logger.severe("Failed to fetch stores: " + e.getMessage());
+            } finally {
+                executorService.shutdown();
+            }
+        }
+        return stores;
+    }
+
+    public static Deal[] getDeals() {
+        Deal[] deals = null;
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        Future<Deal[]> future = executorService.submit(new DealFetcherCallable());
+        try {
+            deals = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            MainActivity.logger.severe("Failed to fetch deals: " + e.getMessage());
+        } finally {
+            executorService.shutdown();
+        }
+        return deals;
+    }
+
+    public static Deal[] getDeals(Map<String, String> parameters) {
+        StringBuilder url = new StringBuilder(BASE_URL + DEALS + "?");
+        for(Map.Entry<String, String> entry : parameters.entrySet()) {
+            url.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+        MainActivity.logger.info("Fetching deals with parameters: " + url);
+
+        Deal[] deals = null;
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        DealFetcherCallable dealFetcherCallable = new DealFetcherCallable(url.toString());
+        Future<Deal[]> future = executorService.submit(dealFetcherCallable);
+        try {
+            deals = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            MainActivity.logger.severe("Failed to fetch deals: " + e.getMessage());
+        } finally {
+            executorService.shutdown();
+        }
+        return deals;
+    }
 
     public static Store[] filterActiveStores(Store[] stores) {
         return Arrays.stream(stores)
@@ -21,6 +89,17 @@ public class CheapShark {
 
     public static void sortStoresById(Store[] stores) {
         Arrays.sort(stores, Comparator.comparing(store -> store.storeID));
+    }
+
+    public static String getStoreNameById(String id){
+        if(stores == null){
+            stores = getStores();
+        }
+        return Arrays.stream(stores)
+                .filter(store -> store.storeID.equals(id))
+                .findFirst()
+                .map(store -> store.storeName)
+                .orElse("Unknown");
     }
 
 }

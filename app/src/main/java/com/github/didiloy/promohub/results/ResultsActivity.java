@@ -8,9 +8,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
+import com.github.didiloy.promohub.api.CheapShark;
+import com.github.didiloy.promohub.api.Deal;
+import com.github.didiloy.promohub.api.DealFetcherCallable;
+import com.github.didiloy.promohub.api.Store;
+import com.github.didiloy.promohub.api.StoreFetcherCallable;
+import com.github.didiloy.promohub.select_store.StoreAdapter;
+
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -28,6 +42,12 @@ public class ResultsActivity extends AppCompatActivity {
     private int metacriticRating;
     private int steamRating;
 
+    private RecyclerView recycler_view_results;
+
+    Deal[] deals;
+
+    HashMap<String, String> parameters = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +62,17 @@ public class ResultsActivity extends AppCompatActivity {
 
         retrieveDataFromIntent();
         logRetrievedValues();
+
+        recycler_view_results = findViewById(R.id.recycler_view_results);
+
+        Deal[] deals = CheapShark.getDeals(parameters);
+        if(deals == null){
+            MainActivity.logger.severe("Failed to fetch deals");
+            return;
+        }
+        DealAdapter dealAdapter = new DealAdapter(this, deals);
+        recycler_view_results.setAdapter(dealAdapter);
+        recycler_view_results.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void retrieveDataFromIntent() {
@@ -68,6 +99,18 @@ public class ResultsActivity extends AppCompatActivity {
 
         metacriticRating = intent.getIntExtra("metacritic", 0);
         steamRating = intent.getIntExtra("steam", 0);
+
+        parameters.put("storeID", selectedStores);
+        parameters.put("pageSize", String.valueOf(numberOfDeals));
+        parameters.put("maxAge", String.valueOf(maxAgeOfDeals));
+        parameters.put("sortBy", sortBy);
+        parameters.put("desc", sortOrder);
+        parameters.put("lowerPrice", String.valueOf(minPrice));
+        parameters.put("upperPrice", String.valueOf(maxPrice));
+        parameters.put("AAA", String.valueOf(aaaFilter));
+        parameters.put("onSale", String.valueOf(onSaleFilter));
+        parameters.put("metacritic", String.valueOf(metacriticRating));
+        parameters.put("steam", String.valueOf(steamRating));
     }
 
     private void logRetrievedValues() {

@@ -96,10 +96,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:onClick="onButtonShowAllDealsClick"
         android:text="@string/home_show_all_deals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintStart_toEndOf="@id/button_show_deals_with_saved_filters"/>
+        app:layout_constraintStart_toEndOf="@id/button_show_deals_with_saved_filters"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
     <Button

@@ -52,25 +52,32 @@ public class SelectStoreActivity extends AppCompatActivity {
         textView_error = findViewById(R.id.textView_error);
         switch_alphabetical_order = findViewById(R.id.switchMaterial);
         nextButton = findViewById(R.id.button);
-
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
-        try {
-            stores = future.get();
-            //initialise the isChecked field of the store
-            for (Store store : stores) {
-                store.isChecked = true;
-            }
-            stores = CheapShark.filterActiveStores(stores);
-            StoreAdapter storeAdapter = new StoreAdapter(this, stores);
-            recyclerView.setAdapter(storeAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        } catch (InterruptedException | ExecutionException e) {
-            MainActivity.logger.severe("Failed to fetch stores: " + e.getMessage());
+        stores = CheapShark.getStores();
+        if(stores == null){
             textView_error.setText(R.string.error_loading_store);
-        } finally {
-            executorService.shutdown();
+            return;
         }
+        StoreAdapter storeAdapter = new StoreAdapter(this, stores);
+        recyclerView.setAdapter(storeAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        ExecutorService executorService = Executors.newFixedThreadPool(1);
+//        Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
+//        try {
+//            stores = future.get();
+//            //initialise the isChecked field of the store
+//            for (Store store : stores) {
+//                store.isChecked = true;
+//            }
+//            stores = CheapShark.filterActiveStores(stores);
+//            StoreAdapter storeAdapter = new StoreAdapter(this, stores);
+//            recyclerView.setAdapter(storeAdapter);
+//            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        } catch (InterruptedException | ExecutionException e) {
+//            MainActivity.logger.severe("Failed to fetch stores: " + e.getMessage());
+//            textView_error.setText(R.string.error_loading_store);
+//        } finally {
+//            executorService.shutdown();
+//        }
     }
 
     public void onSwitchAlphabeticalOrderClicked(View view) {

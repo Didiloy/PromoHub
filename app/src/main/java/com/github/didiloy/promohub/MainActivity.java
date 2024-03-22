@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.github.didiloy.promohub.results.AllDealsActivity;
 import com.github.didiloy.promohub.select_deals_parameters.SelectDealsParametersActivity;
 import com.github.didiloy.promohub.select_deals_price_parameters.SelectDealsPriceParametersActivity;
 import com.github.didiloy.promohub.select_store.SelectStoreActivity;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Button button_quit;
     Button button_customize_search;
 
+    Button button_show_all_deals;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,17 @@ public class MainActivity extends AppCompatActivity {
         });
         button_quit = findViewById(R.id.button_quit);
         button_customize_search = findViewById(R.id.button_customize_search);
+        button_show_all_deals = findViewById(R.id.button_show_all_deals);
 
     }
 
     public void onButtonCustomizeSearchClick(View view) {
         Intent intent = new Intent(this, SelectStoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonShowAllDealsClick(View view) {
+        Intent intent = new Intent(this, AllDealsActivity.class);
         startActivity(intent);
     }
 

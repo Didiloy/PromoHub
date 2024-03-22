@@ -34,4 +34,8 @@
     <string name="rating">Notation:</string>
     <string name="finish">Terminer</string>
     <string name="deals">Promos</string>
+    <string name="promohub_disclaimer">Résultats fournis par l\'API de CheapShark</string>
+    <string name="game_hero">game_hero</string>
+    <string name="deals_details">Détails</string>
+    <string name="view_deal_details">voir les détails du deal</string>
 </resources>
