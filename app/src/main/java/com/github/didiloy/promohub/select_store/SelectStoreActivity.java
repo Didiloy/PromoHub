@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -38,6 +39,8 @@ public class SelectStoreActivity extends AppCompatActivity {
 
     Button nextButton;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,32 +55,22 @@ public class SelectStoreActivity extends AppCompatActivity {
         textView_error = findViewById(R.id.textView_error);
         switch_alphabetical_order = findViewById(R.id.switchMaterial);
         nextButton = findViewById(R.id.button);
-        stores = CheapShark.getStores();
-        if(stores == null){
-            textView_error.setText(R.string.error_loading_store);
-            return;
-        }
-        StoreAdapter storeAdapter = new StoreAdapter(this, stores);
-        recyclerView.setAdapter(storeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        ExecutorService executorService = Executors.newFixedThreadPool(1);
-//        Future<Store[]> future = executorService.submit(new StoreFetcherCallable());
-//        try {
-//            stores = future.get();
-//            //initialise the isChecked field of the store
-//            for (Store store : stores) {
-//                store.isChecked = true;
-//            }
-//            stores = CheapShark.filterActiveStores(stores);
-//            StoreAdapter storeAdapter = new StoreAdapter(this, stores);
-//            recyclerView.setAdapter(storeAdapter);
-//            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        } catch (InterruptedException | ExecutionException e) {
-//            MainActivity.logger.severe("Failed to fetch stores: " + e.getMessage());
-//            textView_error.setText(R.string.error_loading_store);
-//        } finally {
-//            executorService.shutdown();
-//        }
+        progressBar = findViewById(R.id.progressBar2);
+
+
+        new Thread(() -> {
+            stores = CheapShark.getStores();
+            if (stores == null) {
+                textView_error.setText(R.string.error_loading_store);
+                return;
+            }
+            runOnUiThread(() -> {
+                progressBar.setVisibility(ProgressBar.GONE);
+                StoreAdapter storeAdapter = new StoreAdapter(this, stores);
+                recyclerView.setAdapter(storeAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            });
+        }).start();
     }
 
     public void onSwitchAlphabeticalOrderClicked(View view) {
@@ -86,11 +79,11 @@ public class SelectStoreActivity extends AppCompatActivity {
         } else {
             CheapShark.sortStoresById(stores);
         }
-        if(recyclerView.getAdapter() != null)
+        if (recyclerView.getAdapter() != null)
             recyclerView.getAdapter().notifyItemRangeChanged(0, stores.length);
     }
 
-    public String getListOfSelectedStores(){
+    public String getListOfSelectedStores() {
         StringBuilder selectedStores = new StringBuilder();
         for (Store store : stores) {
             if (store.isChecked) {
@@ -103,7 +96,7 @@ public class SelectStoreActivity extends AppCompatActivity {
         return selectedStores.toString();
     }
 
-    public void onNextButtonClick(View v){
+    public void onNextButtonClick(View v) {
         Intent intent = new Intent(this, SelectDealsParametersActivity.class);
         intent.putExtra("selectedStores", getListOfSelectedStores());
         startActivity(intent);

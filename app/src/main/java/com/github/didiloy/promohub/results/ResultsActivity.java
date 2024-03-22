@@ -2,6 +2,7 @@ package com.github.didiloy.promohub.results;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,10 @@ public class ResultsActivity extends AppCompatActivity {
 
     HashMap<String, String> parameters = new HashMap<>();
 
+    DealAdapter dealAdapter;
+
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,30 +69,36 @@ public class ResultsActivity extends AppCompatActivity {
         logRetrievedValues();
 
         recycler_view_results = findViewById(R.id.recycler_view_results);
+        progressBar = findViewById(R.id.progressBar);
 
-        Deal[] deals = CheapShark.getDeals(parameters);
-        if(deals == null){
-            MainActivity.logger.severe("Failed to fetch deals");
-            return;
-        }
-        DealAdapter dealAdapter = new DealAdapter(this, deals);
-        recycler_view_results.setAdapter(dealAdapter);
-        recycler_view_results.setLayoutManager(new LinearLayoutManager(this));
+        new Thread(() -> {
+            deals = CheapShark.getDeals(parameters);
+            if (deals == null) {
+                MainActivity.logger.severe("Failed to fetch deals");
+                return;
+            }
+            runOnUiThread(() -> {
+                progressBar.setVisibility(ProgressBar.GONE);
+                dealAdapter = new DealAdapter(this, deals);
+                recycler_view_results.setAdapter(dealAdapter);
+                recycler_view_results.setLayoutManager(new LinearLayoutManager(this));
+            });
+        }).start();
     }
 
     private void retrieveDataFromIntent() {
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("selectedStores") != null)
+        if (intent.getStringExtra("selectedStores") != null)
             selectedStores = intent.getStringExtra("selectedStores");
         else selectedStores = "";
 
         numberOfDeals = intent.getIntExtra("numberOfDeals", 0);
         maxAgeOfDeals = intent.getIntExtra("maxAgeOfDeals", 0);
-        if(intent.getStringExtra("sortBy") != null)
+        if (intent.getStringExtra("sortBy") != null)
             sortBy = intent.getStringExtra("sortBy");
         else sortBy = "";
-        if(intent.getStringExtra("sortOrder") != null)
+        if (intent.getStringExtra("sortOrder") != null)
             sortOrder = intent.getStringExtra("sortOrder");
         else sortOrder = "";
 
