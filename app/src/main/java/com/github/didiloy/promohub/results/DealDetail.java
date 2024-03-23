@@ -22,6 +22,7 @@ import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
+import com.github.didiloy.promohub.api.SteamGridDb;
 
 public class DealDetail extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class DealDetail extends AppCompatActivity {
     Button button_view_deal;
     Button button_save_deal;
     CardView cardView_price;
+    ImageView game_grid_image;
     Deal deal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class DealDetail extends AppCompatActivity {
         button_view_deal = findViewById(R.id.button_view_deal_in_browser);
         button_save_deal = findViewById(R.id.button_save_deal);
         cardView_price = findViewById(R.id.cardView6);
+        game_grid_image = findViewById(R.id.game_grid_image);
 
         cardView_price.setCardElevation(0);
         textView_game_title.setText(deal.title);
@@ -71,7 +74,11 @@ public class DealDetail extends AppCompatActivity {
         textView_game_price.setText(deal.salePrice + "$");
         textView_game_old_price.setText(deal.normalPrice + "$");
         textView_game_old_price.setPaintFlags(textView_game_old_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        int metacriticScore = deal.metacriticScore > 90 ? 5 : 5 - (100 / deal.metacriticScore);
+        int metacriticScore;
+        if(deal.metacriticScore == 0) metacriticScore = 0;
+        else {
+            metacriticScore = deal.metacriticScore > 90 ? 5 : 5 - (100 / deal.metacriticScore);
+        }
         game_ratingbar_metacritic.setRating(metacriticScore);
         game_textview_steam_rating.setText('"' + deal.steamRatingText+ '"');
 
@@ -85,10 +92,23 @@ public class DealDetail extends AppCompatActivity {
         });
 
         String imageUrl = deal.thumb;
-        Glide.with(this).load(imageUrl)
-                .placeholder(R.drawable.image_not_found)
-                .error(R.drawable.image_not_found)
-                .into(imageView_game_image);
-
+        new Thread(() -> {
+            String heroe_url = SteamGridDb.getGameHero(SteamGridDb.getGameIDByName(deal.title));
+            if(heroe_url == null) heroe_url = imageUrl;
+            String finalHeroe_url = heroe_url;
+            runOnUiThread(() -> Glide.with(this).load(finalHeroe_url)
+                    .placeholder(R.drawable.image_not_found)
+                    .error(R.drawable.image_not_found)
+                    .into(imageView_game_image));
+        }).start();
+        new Thread(() -> {
+            String grid_url = SteamGridDb.getGameGrid(SteamGridDb.getGameIDByName(deal.title));
+            if(grid_url == null) grid_url = imageUrl;
+            String finalGrid_url = grid_url;
+            runOnUiThread(() -> Glide.with(this).load(finalGrid_url)
+                    .placeholder(R.drawable.image_not_found)
+                    .error(R.drawable.image_not_found)
+                    .into(game_grid_image));
+        }).start();
     }
 }

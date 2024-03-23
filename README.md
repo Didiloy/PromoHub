@@ -13,6 +13,7 @@ PromoHub has no control over the prices, it simply plugs into the CheapShark API
 - okhttp3 for network requests
 - Glide for image loading
 - MultiRowsRadioGroup to display radio button in multiple lines by [linfaxin](https://github.com/linfaxin/MultiRowsRadioGroup)
+- SteamGridDB for some game images
 
 ### TODO
 - [x] Page to filter stores
@@ -22,6 +23,7 @@ PromoHub has no control over the prices, it simply plugs into the CheapShark API
 - [ ] Add a search page to search for a specific game by title
 - [ ] Envoyer paramètres enregistrés par mail/sms 
 - [ ] Enregistrer les deals 
-- [ ] Page de détail de deal avec un affichage de tout les attributs 
+- [x] Page de détail de deal avec un affichage de tout les attributs 
+- [ ] Page avec tout les deals enregistrés
 
 ### Ideas

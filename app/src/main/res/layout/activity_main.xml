@@ -78,19 +78,19 @@
         android:onClick="onButtonShowAllDealsClick"
         android:text="@string/home_show_all_deals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_show_deals_with_saved_filters"
+        app:layout_constraintStart_toEndOf="@id/button_show_saved_deals"
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
     <Button
-        android:id="@+id/button_show_deals_with_saved_filters"
+        android:id="@+id/button_show_saved_deals"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="?attr/colorSecondaryContainer"
-        android:text="@string/show_deals_with_saved_filters"
+        android:text="@string/show_saved_deals"
         android:textColor="?attr/colorOnSecondaryContainer"
         app:layout_constraintEnd_toStartOf="@id/button_show_all_deals"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_show_deals_with_saved_filters" />
+        app:layout_constraintTop_toBottomOf="@+id/button_show_saved_deals" />
 <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 <!--    </androidx.cardview.widget.CardView>-->
 
