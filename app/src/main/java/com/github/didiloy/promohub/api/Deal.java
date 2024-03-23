@@ -7,6 +7,7 @@ public class Deal implements Parcelable {
 
     public String internalName;
     public String title;
+    public String external;
     public String metacriticLink;
     public String dealID;
     public String storeID;
@@ -24,10 +25,13 @@ public class Deal implements Parcelable {
     public long lastChange;
     public double dealRating;
     public String thumb;
+    public String cheapestDealID;
+    public String cheapest;
 
     protected Deal(Parcel in) {
         internalName = in.readString();
         title = in.readString();
+        external = in.readString();
         metacriticLink = in.readString();
         dealID = in.readString();
         storeID = in.readString();
@@ -45,12 +49,15 @@ public class Deal implements Parcelable {
         lastChange = in.readLong();
         dealRating = in.readDouble();
         thumb = in.readString();
+        cheapestDealID = in.readString();
+        cheapest = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(internalName);
         dest.writeString(title);
+        dest.writeString(external);
         dest.writeString(metacriticLink);
         dest.writeString(dealID);
         dest.writeString(storeID);
@@ -68,6 +75,8 @@ public class Deal implements Parcelable {
         dest.writeLong(lastChange);
         dest.writeDouble(dealRating);
         dest.writeString(thumb);
+        dest.writeString(cheapestDealID);
+        dest.writeString(cheapest);
     }
 
     @Override

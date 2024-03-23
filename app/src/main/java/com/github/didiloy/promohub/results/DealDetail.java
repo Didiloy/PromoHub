@@ -24,6 +24,8 @@ import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
 import com.github.didiloy.promohub.api.SteamGridDb;
 
+import java.util.Objects;
+
 public class DealDetail extends AppCompatActivity {
 
     ImageView imageView_game_image;
@@ -38,6 +40,8 @@ public class DealDetail extends AppCompatActivity {
     CardView cardView_price;
     ImageView game_grid_image;
     Deal deal;
+
+    String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +73,19 @@ public class DealDetail extends AppCompatActivity {
         game_grid_image = findViewById(R.id.game_grid_image);
 
         cardView_price.setCardElevation(0);
-        textView_game_title.setText(deal.title);
+        title = deal.title;
+        if(title == null || title.isEmpty()){ //pour la recherche on ne recoit pas les meme résultats (voir https://apidocs.cheapshark.com/#c58ecff8-ee51-2901-f263-8606e8dc281e)
+            title = deal.external;
+        }
+        textView_game_title.setText(title);
         textView_game_store.setText(CheapShark.getStoreNameById(deal.storeID));
-        textView_game_price.setText(deal.salePrice + "$");
+        String price;
+        if(deal.salePrice == null || Objects.equals(deal.salePrice, "")){ //pour la recherche
+            price = deal.cheapest;
+        } else {
+            price = deal.salePrice;
+        }
+        textView_game_price.setText(price + "$");
         textView_game_old_price.setText(deal.normalPrice + "$");
         textView_game_old_price.setPaintFlags(textView_game_old_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         int metacriticScore;
@@ -83,7 +97,11 @@ public class DealDetail extends AppCompatActivity {
         game_textview_steam_rating.setText('"' + deal.steamRatingText+ '"');
 
         button_view_deal.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(CheapShark.REDIRECT_BASE_URL + deal.dealID));
+            String dealId = deal.dealID;
+            if(dealId == null || dealId.isEmpty()){ //si on vient de la recherche
+                dealId = deal.cheapestDealID;
+            }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(CheapShark.REDIRECT_BASE_URL + dealId));
             startActivity(browserIntent);
         });
 
@@ -93,7 +111,7 @@ public class DealDetail extends AppCompatActivity {
 
         String imageUrl = deal.thumb;
         new Thread(() -> {
-            String heroe_url = SteamGridDb.getGameHero(SteamGridDb.getGameIDByName(deal.title));
+            String heroe_url = SteamGridDb.getGameHero(SteamGridDb.getGameIDByName(title));
             if(heroe_url == null) heroe_url = imageUrl;
             String finalHeroe_url = heroe_url;
             runOnUiThread(() -> Glide.with(this).load(finalHeroe_url)
@@ -102,7 +120,7 @@ public class DealDetail extends AppCompatActivity {
                     .into(imageView_game_image));
         }).start();
         new Thread(() -> {
-            String grid_url = SteamGridDb.getGameGrid(SteamGridDb.getGameIDByName(deal.title));
+            String grid_url = SteamGridDb.getGameGrid(SteamGridDb.getGameIDByName(title));
             if(grid_url == null) grid_url = imageUrl;
             String finalGrid_url = grid_url;
             runOnUiThread(() -> Glide.with(this).load(finalGrid_url)

@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.github.didiloy.promohub.results.AllDealsActivity;
+import com.github.didiloy.promohub.search.SearchActivity;
 import com.github.didiloy.promohub.select_deals_parameters.SelectDealsParametersActivity;
 import com.github.didiloy.promohub.select_deals_price_parameters.SelectDealsPriceParametersActivity;
 import com.github.didiloy.promohub.select_store.SelectStoreActivity;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     Button button_customize_search;
 
     Button button_show_all_deals;
+    Button search;
+    Button show_saved_deals;
+    Button parameters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         button_quit = findViewById(R.id.button_quit);
         button_customize_search = findViewById(R.id.button_customize_search);
         button_show_all_deals = findViewById(R.id.button_show_all_deals);
+        search = findViewById(R.id.button_search);
+        show_saved_deals = findViewById(R.id.button_show_saved_deals);
+        parameters = findViewById(R.id.button_parameter);
 
     }
 
@@ -50,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonShowAllDealsClick(View view) {
         Intent intent = new Intent(this, AllDealsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonSearchClick(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 

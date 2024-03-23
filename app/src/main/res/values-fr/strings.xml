@@ -42,4 +42,7 @@
     <string name="save_deal">Sauvegarder le deal</string>
     <string name="show_saved_deals">Voir les deals enregistrés</string>
     <string name="normal_price">Prix normal:</string>
+    <string name="button_search_speakable_text">recherche</string>
+    <string name="exact">exact</string>
+    <string name="cheapest">moins cher</string>
 </resources>

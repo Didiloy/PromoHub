@@ -3,6 +3,7 @@ package com.github.didiloy.promohub.results;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +51,8 @@ public class AllDealsActivity extends AppCompatActivity {
             deals = CheapShark.getDeals();
             if (deals == null) {
                 MainActivity.logger.severe("Failed to fetch deals");
+                Toast toast = Toast.makeText(this, "Failed to fetch deals", Toast.LENGTH_SHORT);
+                toast.show();
                 return;
             }
             runOnUiThread(() -> {

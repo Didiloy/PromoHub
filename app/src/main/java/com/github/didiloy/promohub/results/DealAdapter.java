@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,10 +15,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
+
+import java.util.Objects;
 
 public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
 
@@ -44,9 +43,22 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull DealAdapter.ViewHolder holder, int position) {
         //textView
-        holder.textview_game_title.setText(deals[position].title);
+        String title;
+        if(deals[position].title == null || Objects.equals(deals[position].title, "")){ //pour la recherche on ne recoit pas les meme résultats (voir https://apidocs.cheapshark.com/#c58ecff8-ee51-2901-f263-8606e8dc281e)
+            title = deals[position].external;
+        } else {
+            title = deals[position].title;
+        }
+        holder.textview_game_title.setText(title);
         holder.textview_deal_store.setText(CheapShark.getStoreNameById(deals[position].storeID));
-        holder.deal_price.setText(deals[position].salePrice + "$");
+
+        String price;
+        if(deals[position].salePrice == null || Objects.equals(deals[position].salePrice, "")){ //pour la recherche
+            price = context.getString(R.string.cheapest) + " " + deals[position].cheapest;
+        } else {
+            price = deals[position].salePrice;
+        }
+        holder.deal_price.setText(price + "$");
 
         //image
         String imageUrl = deals[position].thumb;

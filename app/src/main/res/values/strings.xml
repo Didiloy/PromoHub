@@ -37,6 +37,8 @@
     <string name="save_deal">Save deal</string>
     <string name="show_saved_deals">show saved deals</string>
     <string name="normal_price">Normal price:</string>
+    <string name="button_search_speakable_text">search</string>
+    <string name="exact">exact</string>
     <item name="select_deals_radio_button_Title" type="string">Title</item>
     <item name="select_deals_radio_button_Savings" type="string">Savings</item>
     <item name="select_deals_radio_button_Price" type="string">Price</item>
@@ -47,4 +49,5 @@
     <item name="select_deals_radio_button_Release" type="string">Release</item>
     <item name="select_deals_radio_button_Store" type="string">Store</item>
     <item name="select_deals_radio_button_Recent" type="string">Recent</item>
+    <string name="cheapest">cheapest</string>
 </resources>

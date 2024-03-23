@@ -45,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        style="?attr/materialSwitchStyle"
         android:id="@+id/switchMaterial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

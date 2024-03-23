@@ -18,6 +18,7 @@ public class CheapShark {
     public static final String BASE_URL = "https://www.cheapshark.com/api/1.0/";
     public static final String DEALS = "deals";
     public static final String STORES = "stores";
+    public static final String GAMES_BY_NAME = "games?title=";
     public static final String IMG_BASE_URL = "https://www.cheapshark.com";
 
     public static final String REDIRECT_BASE_URL = "https://www.cheapshark.com/redirect?dealID=";
@@ -42,6 +43,21 @@ public class CheapShark {
             }
         }
         return stores;
+    }
+
+    public static Deal[] getDealsByGameName(String name, boolean exactMatch){
+        Deal[] deals = null;
+        String url = BASE_URL + GAMES_BY_NAME + name + "&exact=" + (exactMatch ? "1" : "0");
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        Future<Deal[]> future = executorService.submit(new DealFetcherCallable(url));
+        try {
+            deals = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            MainActivity.logger.severe("Failed to fetch deals: " + e.getMessage());
+        } finally {
+            executorService.shutdown();
+        }
+        return deals;
     }
 
     public static Deal[] getDeals() {

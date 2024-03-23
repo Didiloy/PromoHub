@@ -29,6 +29,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/button_search"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_search_speakable_text"
+            android:onClick="onButtonSearchClick"
+            android:textColor="?attr/colorPrimary"
+            app:icon="?android:attr/actionModeWebSearchDrawable"
+            app:iconSize="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_parameter"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_parameter"
             style="?attr/materialIconButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

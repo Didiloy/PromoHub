@@ -44,34 +44,17 @@ public class SteamGridDb {
     }
 
     public static String getGameHero(int Id){
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(BASE_URL + HEROE_SEARCH + Id)
-                .addHeader("Authorization", "Bearer " + key)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                String responseBody = response.body().string();
-                MainActivity.logger.info("Response: " + responseBody);
-                JSONObject jsonObject = new JSONObject(responseBody);
-                JSONArray dataArray = jsonObject.getJSONArray("data");
-                JSONObject firstObject = dataArray.getJSONObject(0);
-                return firstObject.getString("url");
-            } else {
-                MainActivity.logger.severe("Request failed: " + response.code());
-            }
-        } catch (IOException e) {
-            MainActivity.logger.severe("Failed to fetch game hero: " + e.getMessage());
-        } catch (JSONException e) {
-            MainActivity.logger.severe("Failed to fetch game hero: " + e.getMessage());
-        }
-        return null;
+        return getGameImage(Id, HEROE_SEARCH);
     }
 
     public static String getGameGrid(int Id){
+        return getGameImage(Id, GRID_SEARCH);
+    }
+
+    private static String getGameImage(int Id, String type){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(BASE_URL + GRID_SEARCH + Id)
+                .url(BASE_URL + type + Id)
                 .addHeader("Authorization", "Bearer " + key)
                 .build();
         try (Response response = client.newCall(request).execute()) {
@@ -86,9 +69,9 @@ public class SteamGridDb {
                 MainActivity.logger.severe("Request failed: " + response.code());
             }
         } catch (IOException e) {
-            MainActivity.logger.severe("Failed to fetch game grid: " + e.getMessage());
+            MainActivity.logger.severe("Failed to fetch game image: " + e.getMessage());
         } catch (JSONException e) {
-            MainActivity.logger.severe("Failed to fetch game grid: " + e.getMessage());
+            MainActivity.logger.severe("Failed to fetch game image: " + e.getMessage());
         }
         return null;
     }
