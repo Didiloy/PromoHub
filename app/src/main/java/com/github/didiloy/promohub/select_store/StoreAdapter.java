@@ -49,7 +49,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         //image
         String imageUrl = CheapShark.IMG_BASE_URL + stores[position].images.get("logo");
         Glide.with(holder.itemView.getContext()).load(imageUrl)
-                .placeholder(R.drawable.image_not_found)
+                .placeholder(R.drawable.loading)
                 .error(R.drawable.image_not_found)
                 .into(holder.imageView_logo);
 

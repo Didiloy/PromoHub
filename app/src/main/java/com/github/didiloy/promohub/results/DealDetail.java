@@ -115,7 +115,7 @@ public class DealDetail extends AppCompatActivity {
             if(heroe_url == null) heroe_url = imageUrl;
             String finalHeroe_url = heroe_url;
             runOnUiThread(() -> Glide.with(this).load(finalHeroe_url)
-                    .placeholder(R.drawable.image_not_found)
+                    .placeholder(R.drawable.loading)
                     .error(R.drawable.image_not_found)
                     .into(imageView_game_image));
         }).start();
@@ -124,7 +124,7 @@ public class DealDetail extends AppCompatActivity {
             if(grid_url == null) grid_url = imageUrl;
             String finalGrid_url = grid_url;
             runOnUiThread(() -> Glide.with(this).load(finalGrid_url)
-                    .placeholder(R.drawable.image_not_found)
+                    .placeholder(R.drawable.loading)
                     .error(R.drawable.image_not_found)
                     .into(game_grid_image));
         }).start();

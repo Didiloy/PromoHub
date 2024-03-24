@@ -63,7 +63,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
         //image
         String imageUrl = deals[position].thumb;
         Glide.with(holder.itemView.getContext()).load(imageUrl)
-                .placeholder(R.drawable.image_not_found)
+                .placeholder(R.drawable.loading)
                 .error(R.drawable.image_not_found)
                 .into(holder.imageView_game_hero);
 
