@@ -50,4 +50,9 @@
     <item name="select_deals_radio_button_Store" type="string">Store</item>
     <item name="select_deals_radio_button_Recent" type="string">Recent</item>
     <string name="cheapest">cheapest</string>
+    <string name="deal_saved">Deal saved</string>
+    <string name="delete_saved_deal">Remove saved deal</string>
+    <string name="deal_deleted">Deal deleted</string>
+    <string name="no_saved_deals">No saved deals</string>
+    <string name="saved_deals">Saved deals</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -23,7 +24,11 @@ import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
 import com.github.didiloy.promohub.api.SteamGridDb;
+import com.github.didiloy.promohub.database.AppDatabase;
+import com.github.didiloy.promohub.database.DealDao;
+import com.github.didiloy.promohub.database.DealEntity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DealDetail extends AppCompatActivity {
@@ -42,6 +47,7 @@ public class DealDetail extends AppCompatActivity {
     Deal deal;
 
     String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +59,7 @@ public class DealDetail extends AppCompatActivity {
             return insets;
         });
         Intent intent = getIntent();
-        if(intent.getParcelableExtra("deal") == null){
+        if (intent.getParcelableExtra("deal") == null) {
             MainActivity.logger.severe("DealDetail: deal is null");
             Toast.makeText(this, "Deal is null", Toast.LENGTH_SHORT).show();
             return;
@@ -74,13 +80,13 @@ public class DealDetail extends AppCompatActivity {
 
         cardView_price.setCardElevation(0);
         title = deal.title;
-        if(title == null || title.isEmpty()){ //pour la recherche on ne recoit pas les meme résultats (voir https://apidocs.cheapshark.com/#c58ecff8-ee51-2901-f263-8606e8dc281e)
+        if (title == null || title.isEmpty()) { //pour la recherche on ne recoit pas les meme résultats (voir https://apidocs.cheapshark.com/#c58ecff8-ee51-2901-f263-8606e8dc281e)
             title = deal.external;
         }
         textView_game_title.setText(title);
         textView_game_store.setText(CheapShark.getStoreNameById(deal.storeID));
         String price;
-        if(deal.salePrice == null || Objects.equals(deal.salePrice, "")){ //pour la recherche
+        if (deal.salePrice == null || Objects.equals(deal.salePrice, "")) { //pour la recherche
             price = deal.cheapest;
         } else {
             price = deal.salePrice;
@@ -89,16 +95,17 @@ public class DealDetail extends AppCompatActivity {
         textView_game_old_price.setText(deal.normalPrice + "$");
         textView_game_old_price.setPaintFlags(textView_game_old_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         int metacriticScore;
-        if(deal.metacriticScore == 0) metacriticScore = 0;
+        if (deal.metacriticScore == 0) metacriticScore = 0;
         else {
             metacriticScore = deal.metacriticScore > 90 ? 5 : 5 - (100 / deal.metacriticScore);
         }
         game_ratingbar_metacritic.setRating(metacriticScore);
-        game_textview_steam_rating.setText('"' + deal.steamRatingText+ '"');
+        game_textview_steam_rating.setText('"' + deal.steamRatingText + '"');
+        setButtonSaveDeal();
 
         button_view_deal.setOnClickListener(v -> {
             String dealId = deal.dealID;
-            if(dealId == null || dealId.isEmpty()){ //si on vient de la recherche
+            if (dealId == null || dealId.isEmpty()) { //si on vient de la recherche
                 dealId = deal.cheapestDealID;
             }
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(CheapShark.REDIRECT_BASE_URL + dealId));
@@ -106,13 +113,33 @@ public class DealDetail extends AppCompatActivity {
         });
 
         button_save_deal.setOnClickListener(v -> {
-           //TODO
+            AppDatabase db = AppDatabase.getInstance();
+            DealDao dealDao = db.dealDao();
+            if (deal.isSaved) {
+                new Thread(() -> {
+                    dealDao.deleteDeal(DealEntity.fromDeal(deal));
+                    deal.isSaved = false;
+                    runOnUiThread(() -> {
+                        setButtonSaveDeal();
+                        Toast.makeText(this, getString(R.string.deal_deleted), Toast.LENGTH_SHORT).show();
+                    });
+                }).start();
+            } else {
+                new Thread(() -> {
+                    dealDao.insertDeal(DealEntity.fromDeal(deal));
+                    deal.isSaved = true;
+                    runOnUiThread(() -> {
+                        setButtonSaveDeal();
+                        Toast.makeText(this, getString(R.string.deal_saved), Toast.LENGTH_SHORT).show();
+                    });
+                }).start();
+            }
         });
 
         String imageUrl = deal.thumb;
         new Thread(() -> {
             String heroe_url = SteamGridDb.getGameHero(SteamGridDb.getGameIDByName(title));
-            if(heroe_url == null) heroe_url = imageUrl;
+            if (heroe_url == null) heroe_url = imageUrl;
             String finalHeroe_url = heroe_url;
             runOnUiThread(() -> Glide.with(this).load(finalHeroe_url)
                     .placeholder(R.drawable.loading)
@@ -121,12 +148,23 @@ public class DealDetail extends AppCompatActivity {
         }).start();
         new Thread(() -> {
             String grid_url = SteamGridDb.getGameGrid(SteamGridDb.getGameIDByName(title));
-            if(grid_url == null) grid_url = imageUrl;
+            if (grid_url == null) grid_url = imageUrl;
             String finalGrid_url = grid_url;
             runOnUiThread(() -> Glide.with(this).load(finalGrid_url)
                     .placeholder(R.drawable.loading)
                     .error(R.drawable.image_not_found)
                     .into(game_grid_image));
         }).start();
+    }
+
+    public void setButtonSaveDeal() {
+        if (deal.isSaved) {
+            button_save_deal.setText(getString(R.string.delete_saved_deal));
+            button_save_deal.setBackgroundColor(getTheme().obtainStyledAttributes(new int[]{com.google.android.material.R.attr.colorError}).getColor(0, 0));
+        } else {
+            button_save_deal.setText(getString(R.string.save_deal));
+            button_save_deal.setBackgroundColor(getTheme().obtainStyledAttributes(new int[]{com.google.android.material.R.attr.colorSecondary}).getColor(0, 0));
+
+        }
     }
 }

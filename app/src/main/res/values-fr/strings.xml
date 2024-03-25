@@ -45,4 +45,9 @@
     <string name="button_search_speakable_text">recherche</string>
     <string name="exact">exact</string>
     <string name="cheapest">moins cher</string>
+    <string name="deal_saved">Deal enregistré</string>
+    <string name="delete_saved_deal">Supprimer le deal enregistré</string>
+    <string name="deal_deleted">Deal supprimé</string>
+    <string name="no_saved_deals">Pas de deals sauvegardé</string>
+    <string name="saved_deals">Deals sauvegardés</string>
 </resources>

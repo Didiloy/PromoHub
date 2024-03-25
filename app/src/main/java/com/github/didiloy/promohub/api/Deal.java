@@ -3,6 +3,8 @@ package com.github.didiloy.promohub.api;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.github.didiloy.promohub.database.DealEntity;
+
 public class Deal implements Parcelable {
 
     public String internalName;
@@ -28,6 +30,14 @@ public class Deal implements Parcelable {
     public String cheapestDealID;
     public String cheapest;
 
+    public boolean isSaved = false;
+
+    public int promohub_database_id;
+
+    public Deal(){
+
+    }
+
     protected Deal(Parcel in) {
         internalName = in.readString();
         title = in.readString();
@@ -51,6 +61,8 @@ public class Deal implements Parcelable {
         thumb = in.readString();
         cheapestDealID = in.readString();
         cheapest = in.readString();
+        isSaved = in.readByte() != 0; // Read boolean as byte
+        promohub_database_id = in.readInt();
     }
 
     @Override
@@ -77,6 +89,8 @@ public class Deal implements Parcelable {
         dest.writeString(thumb);
         dest.writeString(cheapestDealID);
         dest.writeString(cheapest);
+        dest.writeByte((byte) (isSaved ? 1 : 0));
+        dest.writeInt(promohub_database_id);
     }
 
     @Override
