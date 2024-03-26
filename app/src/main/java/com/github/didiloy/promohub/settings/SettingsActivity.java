@@ -16,12 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.didiloy.promohub.R;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsActivity extends AppCompatActivity {
 
     RecyclerView recyclerview_credit;
 
     ConstraintLayout constraintLayout_source_code;
+
+    SwitchMaterial switch_notifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,12 @@ public class SettingsActivity extends AppCompatActivity {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.source_code_value)));
             startActivity(browserIntent);
         });
+
+        switch_notifications = findViewById(R.id.switch_notifications);
     }
 
     public Credit[] getCredits(){
-        Credit[] credits = new Credit[]{
+        return new Credit[]{
                 new Credit("Home image by Leni Kauffman on blush.design", "https://blush.design/fr"),
                 new Credit("Loading image by Storyset", "https://storyset.com/"),
                 new Credit("Image not found by Freepik", "https://www.freepik.com/"),
@@ -64,6 +69,5 @@ public class SettingsActivity extends AppCompatActivity {
                 new Credit("SteamGridDB for some game images"),
                 new Credit("MultiRowsRadioGroup to display radio button in multiple lines by linfaxin", "https://github.com/linfaxin/MultiRowsRadioGroup")
         };
-        return credits;
     }
 }
