@@ -22,9 +22,10 @@ PromoHub has no control over the prices, it simply plugs into the CheapShark API
 - [x] Page to select the lower and upper price limit, the metacritic score and the steam rating, if it's a AAA game and if it's a currently on sale
 - [x] Page to display the results
 - [x] Add a search page to search for a specific game by title
-- [ ] Envoyer paramètres enregistrés par mail/sms 
-- [ ] Enregistrer les deals 
+- [ ] Envoyer paramètres enregistrés par mail/sms
+- [ ] page de parametres
+- [x] Enregistrer les deals 
 - [x] Page de détail de deal avec un affichage de tout les attributs 
-- [ ] Page avec tout les deals enregistrés
+- [x] Page avec tout les deals enregistrés
 
 ### Ideas
