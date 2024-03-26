@@ -98,12 +98,13 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
+                app:tint="?attr/colorOnSurfaceVariant"
                 android:backgroundTint="?attr/colorSurfaceVariant"
                 android:contentDescription="@string/view_deal_details"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/round_greater_than" />
+                app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -21,6 +21,7 @@ import com.github.didiloy.promohub.results.AllDealsActivity;
 import com.github.didiloy.promohub.results.SavedDealsActivity;
 import com.github.didiloy.promohub.search.SearchActivity;
 import com.github.didiloy.promohub.select_store.SelectStoreActivity;
+import com.github.didiloy.promohub.settings.SettingsActivity;
 
 import java.util.logging.Logger;
 
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonSearchClick(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonSettingsClick(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

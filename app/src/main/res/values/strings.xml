@@ -55,4 +55,9 @@
     <string name="deal_deleted">Deal deleted</string>
     <string name="no_saved_deals">No saved deals</string>
     <string name="saved_deals">Saved deals</string>
+    <string name="settings">Settings</string>
+    <string name="save_parameters_as_i_change_them">Save deals parameters as I change them</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="disclaimer_content">PromoHub uses the CheapShark API to find and track game deals but is not affiliated with CheapShark in any way. Deal links have to go through CheapShark\'s redirect URL but this should not affect your price. As per CheapShark\'s API documentation, all prices shown are in USD.  PromoHub has no control over the prices, it simply plugs into the CheapShark API and displays the information as is.</string>
+    <string name="credit">Credits</string>
 </resources>
