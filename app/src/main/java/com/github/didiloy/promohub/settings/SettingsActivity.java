@@ -1,9 +1,14 @@
 package com.github.didiloy.promohub.settings;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +20,8 @@ import com.github.didiloy.promohub.R;
 public class SettingsActivity extends AppCompatActivity {
 
     RecyclerView recyclerview_credit;
+
+    ConstraintLayout constraintLayout_source_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,12 @@ public class SettingsActivity extends AppCompatActivity {
             public boolean canScrollVertically() {
                 return false;
             }
+        });
+
+        constraintLayout_source_code = findViewById(R.id.constraintLayout_source_code);
+        constraintLayout_source_code.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.source_code_value)));
+            startActivity(browserIntent);
         });
     }
 
