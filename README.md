@@ -23,7 +23,7 @@ PromoHub has no control over the prices, it simply plugs into the CheapShark API
 - [x] Page to display the results
 - [x] Add a search page to search for a specific game by title
 - [ ] Envoyer paramètres enregistrés par mail/sms
-- [ ] page de parametres
+- [x] page de parametres
 - [x] Enregistrer les deals 
 - [x] Page de détail de deal avec un affichage de tout les attributs 
 - [x] Page avec tout les deals enregistrés
