@@ -1,7 +1,5 @@
 package com.github.didiloy.promohub.settings;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -24,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     ConstraintLayout constraintLayout_source_code;
 
-    SwitchMaterial switch_notifications;
+    SwitchMaterial switch_save_deal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,11 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(browserIntent);
         });
 
-        switch_notifications = findViewById(R.id.switch_notifications);
+        switch_save_deal = findViewById(R.id.switch_save_deal);
+        switch_save_deal.setChecked(DataStoreSingleton.getInstance(this).getBoolValue("SAVE_SETTINGS"));
+        switch_save_deal.setOnCheckedChangeListener((view, state)->{
+            DataStoreSingleton.getInstance(this).setBoolValue("SAVE_SETTINGS", state);
+        });
     }
 
     public Credit[] getCredits(){

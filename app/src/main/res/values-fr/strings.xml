@@ -56,4 +56,5 @@
     <string name="disclaimer_content">"PromoHub utilise l'API CheapShark pour trouver et suivre les offres de jeux, mais n'est en aucun cas affilié à CheapShark. Les liens des offres doivent passer par l'URL de redirection de CheapShark, mais cela ne devrait pas affecter votre prix. Conformément à la documentation de l'API CheapShark, tous les prix affichés sont en USD. PromoHub n'a aucun contrôle sur les prix, il se connecte simplement à l'API CheapShark et affiche les informations telles quelles. "</string>
     <string name="credit">Credits</string>
     <string name="source_code">Code source</string>
+    <string name="you_can_activate_the_auto_saving_of_your_parameters_in_the_settings">Vous pouvez activer l\'enregistrement automatique de vos paramètres de recherche dans les paramètres !</string>
 </resources>

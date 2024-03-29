@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switch_notifications"
+                    android:id="@+id/switch_save_deal"
                     style="?attr/materialSwitchStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

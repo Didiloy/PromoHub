@@ -61,7 +61,9 @@ public class SelectStoreActivity extends AppCompatActivity {
         new Thread(() -> {
             stores = CheapShark.getStores();
             if (stores == null) {
-                textView_error.setText(R.string.error_loading_store);
+                runOnUiThread(() -> {
+                    textView_error.setText(R.string.error_loading_store);
+                });
                 return;
             }
             runOnUiThread(() -> {
