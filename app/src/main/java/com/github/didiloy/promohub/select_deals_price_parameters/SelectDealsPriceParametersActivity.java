@@ -15,12 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.results.ResultsActivity;
+import com.github.didiloy.promohub.settings.DataStoreSingleton;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SelectDealsPriceParametersActivity extends AppCompatActivity {
 
-    RangeSlider slider_number_of_deals;
+    RangeSlider slider_deal_price;
     TextView max_price_value;
     TextView min_price_value;
     SwitchMaterial switch_price;
@@ -35,6 +36,8 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
     int maxAgeOfDealsFromPreviousActivity;
     String sortByFromPreviousActivity;
     String sortOrderFromPreviousActivity;
+    TextView text_activate_auto_save;
+
 
 
     @Override
@@ -62,7 +65,7 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
         else sortOrderFromPreviousActivity = "";
 
         //get the views from the layout
-        slider_number_of_deals = findViewById(R.id.slider_number_of_deals);
+        slider_deal_price = findViewById(R.id.slider_deal_price);
         max_price_value = findViewById(R.id.max_price_value);
         min_price_value = findViewById(R.id.min_price_value);
         switch_price = findViewById(R.id.switch_all_prices);
@@ -70,33 +73,42 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
         checkBox_deal_parameter_on_sale = findViewById(R.id.checkBox_deal_parameter_on_sale);
         rating_metacritic = findViewById(R.id.rating_metacritic);
         rating_steam = findViewById(R.id.rating_steam);
+        text_activate_auto_save = findViewById(R.id.text_activate_auto_save);
+
+
+        text_activate_auto_save.setVisibility(DataStoreSingleton.getInstance(this).getBoolValue("SAVE_SETTINGS") ? View.GONE : View.VISIBLE);
+
 
         //set default values
-        slider_number_of_deals.setValues(0f, 25f);
-        min_price_value.setText(String.valueOf(Math.round(slider_number_of_deals.getValues().get(0))));
-        max_price_value.setText(String.valueOf(Math.round(slider_number_of_deals.getValues().get(1))));
-        slider_number_of_deals.addOnChangeListener((slider, value, fromUser) -> {
+        setSlider_deal_price();
+        min_price_value.setText(String.valueOf(Math.round(slider_deal_price.getValues().get(0))));
+        max_price_value.setText(String.valueOf(Math.round(slider_deal_price.getValues().get(1))));
+        slider_deal_price.addOnChangeListener((slider, value, fromUser) -> {
             min_price_value.setText(String.valueOf(Math.round(slider.getValues().get(0))));
             max_price_value.setText(String.valueOf(Math.round(slider.getValues().get(1))));
         });
 
         switch_price.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                slider_number_of_deals.setEnabled(false);
+                slider_deal_price.setEnabled(false);
                 min_price_value.setText("");
                 max_price_value.setText("");
-                slider_number_of_deals.setVisibility(TextView.GONE);
+                slider_deal_price.setVisibility(TextView.GONE);
                 min_price_value.setVisibility(TextView.GONE);
                 max_price_value.setVisibility(TextView.GONE);
             } else {
-                slider_number_of_deals.setEnabled(true);
-                slider_number_of_deals.setVisibility(TextView.VISIBLE);
+                slider_deal_price.setEnabled(true);
+                slider_deal_price.setVisibility(TextView.VISIBLE);
                 min_price_value.setVisibility(TextView.VISIBLE);
                 max_price_value.setVisibility(TextView.VISIBLE);
-                min_price_value.setText(String.valueOf(Math.round(slider_number_of_deals.getValues().get(0))));
-                max_price_value.setText(String.valueOf(Math.round(slider_number_of_deals.getValues().get(1))));
+                min_price_value.setText(String.valueOf(Math.round(slider_deal_price.getValues().get(0))));
+                max_price_value.setText(String.valueOf(Math.round(slider_deal_price.getValues().get(1))));
             }
         });
+
+        checkBox_deal_parameter_aaa.setChecked(DataStoreSingleton.getInstance(this).getBoolValue("AAA"));
+        checkBox_deal_parameter_on_sale.setChecked(DataStoreSingleton.getInstance(this).getBoolValue("ON_SALE"));
+        setRatings();
 
     }
 
@@ -111,8 +123,8 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
             intent.putExtra("minPrice", 0);
             intent.putExtra("maxPrice", 50); //50 act the same as no limit
         } else {
-            intent.putExtra("minPrice", Math.round(slider_number_of_deals.getValues().get(0)));
-            intent.putExtra("maxPrice", Math.round(slider_number_of_deals.getValues().get(1)));
+            intent.putExtra("minPrice", Math.round(slider_deal_price.getValues().get(0)));
+            intent.putExtra("maxPrice", Math.round(slider_deal_price.getValues().get(1)));
         }
         intent.putExtra("AAA", checkBox_deal_parameter_aaa.isChecked() ? 1 : 0);
         intent.putExtra("onSale", checkBox_deal_parameter_on_sale.isChecked() ? 1 : 0);
@@ -130,6 +142,46 @@ public class SelectDealsPriceParametersActivity extends AppCompatActivity {
         }
         intent.putExtra("metacritic", metacritic_value);
         intent.putExtra("steam", steam_value);
+
+        //sauvegarder les paramètres si c'est coché
+        if (DataStoreSingleton.getInstance(this).getBoolValue("SAVE_SETTINGS")) {
+            if(switch_price.isChecked()){
+                DataStoreSingleton.getInstance(this).setIntValue("MIN_PRICE", 0);
+                DataStoreSingleton.getInstance(this).setIntValue("MAX_PRICE", 50);
+            } else {
+                DataStoreSingleton.getInstance(this).setIntValue("MIN_PRICE", Math.round(slider_deal_price.getValues().get(0)));
+                DataStoreSingleton.getInstance(this).setIntValue("MAX_PRICE", Math.round(slider_deal_price.getValues().get(1)));
+            }
+            DataStoreSingleton.getInstance(this).setBoolValue("AAA", checkBox_deal_parameter_aaa.isChecked());
+            DataStoreSingleton.getInstance(this).setBoolValue("ON_SALE", checkBox_deal_parameter_on_sale.isChecked());
+            DataStoreSingleton.getInstance(this).setIntValue("RATING_METACRITIC", (int) rating_metacritic.getRating());
+            DataStoreSingleton.getInstance(this).setIntValue("RATING_STEAM", (int) rating_steam.getRating());
+        }
+
         startActivity(intent);
+    }
+
+    public void setSlider_deal_price(){
+        slider_deal_price.setValues(0f, 25f);
+        if (DataStoreSingleton.getInstance(this).getIntValue("MAX_PRICE") != -1){
+            if (DataStoreSingleton.getInstance(this).getIntValue("MAX_PRICE") == 50){
+                switch_price.setChecked(true);
+                slider_deal_price.setEnabled(false);
+                min_price_value.setText("");
+                max_price_value.setText("");
+                slider_deal_price.setVisibility(TextView.GONE);
+                min_price_value.setVisibility(TextView.GONE);
+                max_price_value.setVisibility(TextView.GONE);
+                return;
+            }
+            int min = DataStoreSingleton.getInstance(this).getIntValue("MIN_PRICE");
+            int max = DataStoreSingleton.getInstance(this).getIntValue("MAX_PRICE");
+            slider_deal_price.setValues((float) min, (float) max);
+        }
+    }
+
+    public void setRatings(){
+        rating_metacritic.setRating(DataStoreSingleton.getInstance(this).getIntValue("RATING_METACRITIC") == -1 ? 0 : (float) DataStoreSingleton.getInstance(this).getIntValue("RATING_METACRITIC"));
+        rating_steam.setRating(DataStoreSingleton.getInstance(this).getIntValue("RATING_STEAM") == -1 ? 0 : (float) DataStoreSingleton.getInstance(this).getIntValue("RATING_STEAM"));
     }
 }

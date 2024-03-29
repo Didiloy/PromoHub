@@ -13,7 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.select_deals_price_parameters.SelectDealsPriceParametersActivity;
 import com.github.didiloy.promohub.settings.DataStoreSingleton;
@@ -62,7 +61,7 @@ public class SelectDealsParametersActivity extends AppCompatActivity {
         else selectedStoresFromPreviousActivity = "";
 
         textview_number_of_deals_value = findViewById(R.id.textview_number_of_deals_value);
-        slider_number_of_deals = findViewById(R.id.slider_number_of_deals);
+        slider_number_of_deals = findViewById(R.id.slider_deal_price);
         radio_group_sort_by = findViewById(R.id.radio_group_sort_by);
         radio_button_DealRating = findViewById(R.id.radio_button_DealRating);
         radio_button_Title = findViewById(R.id.radio_button_Title);

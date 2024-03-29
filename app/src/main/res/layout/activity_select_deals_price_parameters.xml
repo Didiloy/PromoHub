@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@id/switch_all_prices" />
 
             <com.google.android.material.slider.RangeSlider
-                android:id="@+id/slider_number_of_deals"
+                android:id="@+id/slider_deal_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -297,6 +297,22 @@
                 app:layout_constraintTop_toBottomOf="@id/textView7" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/text_activate_auto_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/you_can_activate_the_auto_saving_of_your_parameters_in_the_settings"
+        android:textColor="?attr/colorTertiary"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
     <Button
         android:id="@+id/button_next"
