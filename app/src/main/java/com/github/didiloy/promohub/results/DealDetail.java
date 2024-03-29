@@ -48,6 +48,8 @@ public class DealDetail extends AppCompatActivity {
 
     String title;
 
+    Button share_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,7 @@ public class DealDetail extends AppCompatActivity {
         button_save_deal = findViewById(R.id.button_save_deal);
         cardView_price = findViewById(R.id.cardView6);
         game_grid_image = findViewById(R.id.game_grid_image);
+        share_button = findViewById(R.id.share_button);
 
         cardView_price.setCardElevation(0);
         title = deal.title;
@@ -155,6 +158,13 @@ public class DealDetail extends AppCompatActivity {
                     .error(R.drawable.image_not_found)
                     .into(game_grid_image));
         }).start();
+
+        share_button.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");  // Can also use "text/html" for HTML content
+            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + "\n" + CheapShark.REDIRECT_BASE_URL + deal.dealID);
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_using)));
+        });
     }
 
     public void setButtonSaveDeal() {

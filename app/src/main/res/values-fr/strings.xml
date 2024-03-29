@@ -57,4 +57,7 @@
     <string name="credit">Credits</string>
     <string name="source_code">Code source</string>
     <string name="you_can_activate_the_auto_saving_of_your_parameters_in_the_settings">Vous pouvez activer l\'enregistrement automatique de vos paramètres de recherche dans les paramètres !</string>
+    <string name="share">Partager</string>
+    <string name="share_using">Partager avec</string>
+    <string name="share_text">Regardes ce deal que j\'ai trouvé sur PromoHub !</string>
 </resources>

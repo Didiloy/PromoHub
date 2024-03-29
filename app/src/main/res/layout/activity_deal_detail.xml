@@ -181,6 +181,19 @@
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/game_textview_metacritic" />
 
+
+    <Button
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="?attr/colorTertiary"
+        android:text="@string/share"
+        android:textColor="?attr/colorOnTertiary"
+        app:layout_constraintBottom_toTopOf="@+id/button_view_deal_in_browser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/button_view_deal_in_browser"
         android:layout_width="wrap_content"

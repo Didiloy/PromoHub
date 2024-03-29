@@ -15,18 +15,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Store;
-import com.github.didiloy.promohub.api.StoreFetcherCallable;
 import com.github.didiloy.promohub.select_deals_parameters.SelectDealsParametersActivity;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class SelectStoreActivity extends AppCompatActivity {
 
@@ -61,9 +54,7 @@ public class SelectStoreActivity extends AppCompatActivity {
         new Thread(() -> {
             stores = CheapShark.getStores();
             if (stores == null) {
-                runOnUiThread(() -> {
-                    textView_error.setText(R.string.error_loading_store);
-                });
+                runOnUiThread(() -> textView_error.setText(R.string.error_loading_store));
                 return;
             }
             runOnUiThread(() -> {

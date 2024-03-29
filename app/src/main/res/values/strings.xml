@@ -63,4 +63,7 @@
     <string name="source_code">Source code</string>
     <string name="source_code_value" translatable="false">https://github.com/Didiloy/PromoHub/</string>
     <string name="you_can_activate_the_auto_saving_of_your_parameters_in_the_settings">You can activate the auto saving of your parameters in the settings!</string>
+    <string name="share">Share</string>
+    <string name="share_using">Share using</string>
+    <string name="share_text">Take a look at this deal I found on PromoHub !</string>
 </resources>
