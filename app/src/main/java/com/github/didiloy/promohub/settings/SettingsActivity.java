@@ -69,6 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
                 new Credit("okhttp3 for network requests"),
                 new Credit("Glide for image loading"),
                 new Credit("Room for database"),
+                new Credit("DataStore for settings"),
                 new Credit("SteamGridDB for some game images"),
                 new Credit("MultiRowsRadioGroup to display radio button in multiple lines by linfaxin", "https://github.com/linfaxin/MultiRowsRadioGroup")
         };
