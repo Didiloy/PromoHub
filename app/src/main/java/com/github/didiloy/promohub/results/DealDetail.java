@@ -161,7 +161,7 @@ public class DealDetail extends AppCompatActivity {
 
         share_button.setOnClickListener(v -> {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");  // Can also use "text/html" for HTML content
+            shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + "\n" + CheapShark.REDIRECT_BASE_URL + deal.dealID);
             startActivity(Intent.createChooser(shareIntent, getString(R.string.share_using)));
         });
