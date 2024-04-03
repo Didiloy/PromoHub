@@ -37,10 +37,26 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/button_search"
+                    style="?attr/materialIconButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/button_search_speakable_text"
+                    android:onClick="onButtonSearchClick"
+                    android:textColor="?attr/colorPrimary"
+                    app:icon="?android:attr/actionModeWebSearchDrawable"
+                    app:iconSize="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/button_parameter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/button_parameter"
                     style="?attr/materialIconButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/button_parameter_speakable_text"
+                    android:onClick="onButtonSettingsClick"
                     android:textColor="?attr/colorPrimary"
                     app:icon="@drawable/settings_24px"
                     app:iconSize="24dp"
@@ -49,12 +65,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
-                android:layout_marginTop="50dp"
                 android:contentDescription="@string/image_home_content_description"
                 android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +80,6 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/let_s_find_your_next_game"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
@@ -76,72 +89,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
+            <Button
+                android:id="@+id/button_show_all_deals"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="onButtonShowAllDealsClick"
+                android:text="@string/home_show_all_deals"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_show_saved_deals"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/button_show_saved_deals"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="?attr/colorSecondaryContainer"
+                android:onClick="onButtonShowSavedDealsClick"
+                android:text="@string/show_saved_deals"
+                android:textColor="?attr/colorOnSecondaryContainer"
+                app:layout_constraintEnd_toStartOf="@+id/button_show_all_deals"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/button_customize_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="?attr/colorSurfaceVariant"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/button_quit"
+                android:backgroundTint="?attr/colorTertiaryContainer"
+                android:onClick="onButtonCustomizeSearchClick"
+                android:text="@string/home_customize_search"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/button_show_all_deals"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="24dp"
-                        android:text="@string/home_show_all_deals"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <Button
-                        android:id="@+id/button_show_saved_deals"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="24dp"
-                        android:backgroundTint="?attr/colorSecondaryContainer"
-                        android:text="@string/show_deals_with_saved_filters"
-                        android:textColor="?attr/colorOnSecondaryContainer"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button_show_all_deals" />
-
-                    <Button
-                        android:id="@+id/button_customize_search"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginBottom="16dp"
-                        android:backgroundTint="?attr/colorTertiaryContainer"
-                        android:onClick="onButtonCustomizeSearchClick"
-                        android:text="@string/home_customize_search"
-                        android:textColor="?attr/colorOnTertiaryContainer"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button_show_saved_deals" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@+id/button_show_saved_deals" />
 
             <Button
                 android:id="@+id/button_quit"
@@ -151,11 +142,14 @@
                 android:onClick="onButtonQuitClick"
                 android:text="@string/button_quit"
                 android:textColor="?attr/colorOnError"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintTop_toBottomOf="@+id/button_customize_search" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
