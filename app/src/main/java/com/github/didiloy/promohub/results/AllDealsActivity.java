@@ -1,6 +1,5 @@
 package com.github.didiloy.promohub.results;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,15 +16,6 @@ import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
-import com.github.didiloy.promohub.api.DealFetcherCallable;
-import com.github.didiloy.promohub.api.Store;
-import com.github.didiloy.promohub.api.StoreFetcherCallable;
-import com.github.didiloy.promohub.select_store.StoreAdapter;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class AllDealsActivity extends AppCompatActivity {
 

@@ -135,3 +135,54 @@ Enfin nous avons une page de paramètres dans laquelle l'utilisateur peut sélec
 
 ## Difficultés rencontrées
 ## Arborescence
+La structure globale de l'arborescence du code est la suivante:
+```
+├── api
+├── database
+├── MainActivity.java
+├── results
+├── search
+├── select_deals_parameters
+├── select_deals_price_parameters
+├── select_store
+├── settings
+└── utils
+```
+Chaque entrée, excepté `MainActivity.java` est un package.
+#### API
+```
+api
+├── CheapShark.java
+├── DealFetcherCallable.java
+├── Deal.java
+├── SteamGridDb.java
+├── StoreFetcherCallable.java
+└── Store.java
+```
+Dans ce package on retrouve toutes les classes et fonctions relatives aux appels à l'API. Les fichiers `CheapShark.java` et `SteamGridDb.java` définissent les fonctions permettant de communiquer avec les différentes APIs. Les 4 autres fichiers sont les définitions des classes contenant les informations de l'API et les classes implémentant `Callable` permettant d'appeler les APIs.
+
+#### Database
+```
+database
+├── AppDatabase.java
+├── DealDao.java
+└── DealEntity.java
+```
+Les classes de ce package définissent la base de données et l'entité permettant d'enregistrer les deals.
+
+#### Results
+```
+results
+├── AllDealsActivity.java
+├── DealAdapter.java
+├── DealDetail.java
+├── ResultsActivity.java
+└── SavedDealsActivity.java
+```
+Les classes de ce package correspondent à toutes les activités affichant des résultats des APIs.
+
+#### Utils
+Ce package contient les éléments dont on peut avoir besoin qui ne correspondent pas aux autres packages
+
+#### Le reste
+Tout les autres packages correspondent aux différentes activités de l'application.
