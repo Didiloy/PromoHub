@@ -34,6 +34,8 @@ public class Deal implements Parcelable {
 
     public int promohub_database_id;
 
+    public String saved_date;
+
     public Deal(){
 
     }
@@ -63,6 +65,7 @@ public class Deal implements Parcelable {
         cheapest = in.readString();
         isSaved = in.readByte() != 0; // Read boolean as byte
         promohub_database_id = in.readInt();
+        saved_date = in.readString();
     }
 
     @Override
@@ -91,6 +94,7 @@ public class Deal implements Parcelable {
         dest.writeString(cheapest);
         dest.writeByte((byte) (isSaved ? 1 : 0));
         dest.writeInt(promohub_database_id);
+        dest.writeString(saved_date);
     }
 
     @Override

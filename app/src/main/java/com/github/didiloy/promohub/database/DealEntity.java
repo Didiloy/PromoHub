@@ -33,6 +33,8 @@ public class DealEntity {
     public String cheapestDealID;
     public String cheapest;
 
+    public String saved_date;
+
     @Ignore
     public Deal toDeal(){
         Deal deal = new Deal();
@@ -60,6 +62,7 @@ public class DealEntity {
         deal.cheapest = cheapest;
         deal.isSaved = true;
         deal.promohub_database_id = uid;
+        deal.saved_date = saved_date;
         return deal;
     }
 
@@ -91,6 +94,7 @@ public class DealEntity {
         if(deal.promohub_database_id != 0){
             dealEntity.uid = deal.promohub_database_id;
         }
+        dealEntity.saved_date = deal.saved_date;
         return dealEntity;
     }
 }

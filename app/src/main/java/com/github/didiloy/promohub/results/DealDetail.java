@@ -28,6 +28,8 @@ import com.github.didiloy.promohub.database.AppDatabase;
 import com.github.didiloy.promohub.database.DealDao;
 import com.github.didiloy.promohub.database.DealEntity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -44,6 +46,7 @@ public class DealDetail extends AppCompatActivity {
     Button button_save_deal;
     CardView cardView_price;
     ImageView game_grid_image;
+    Button own_game_button;
     Deal deal;
 
     String title;
@@ -80,6 +83,7 @@ public class DealDetail extends AppCompatActivity {
         cardView_price = findViewById(R.id.cardView6);
         game_grid_image = findViewById(R.id.game_grid_image);
         share_button = findViewById(R.id.share_button);
+        own_game_button = findViewById(R.id.own_game_button);
 
         cardView_price.setCardElevation(0);
         title = deal.title;
@@ -129,14 +133,24 @@ public class DealDetail extends AppCompatActivity {
                 }).start();
             } else {
                 new Thread(() -> {
-                    dealDao.insertDeal(DealEntity.fromDeal(deal));
                     deal.isSaved = true;
+                    deal.saved_date = getCurrentDate();
+                    dealDao.insertDeal(DealEntity.fromDeal(deal));
                     runOnUiThread(() -> {
                         setButtonSaveDeal();
                         Toast.makeText(this, getString(R.string.deal_saved), Toast.LENGTH_SHORT).show();
                     });
                 }).start();
             }
+        });
+
+        own_game_button.setOnClickListener(v -> {
+            new Thread(() -> {
+                //TODO
+                runOnUiThread(() -> {
+                    Toast.makeText(this, getString(R.string.deal_saved), Toast.LENGTH_SHORT).show();
+                });
+            }).start();
         });
 
         String imageUrl = deal.thumb;
@@ -176,5 +190,11 @@ public class DealDetail extends AppCompatActivity {
             button_save_deal.setBackgroundColor(getTheme().obtainStyledAttributes(new int[]{com.google.android.material.R.attr.colorSecondary}).getColor(0, 0));
 
         }
+    }
+
+    public String getCurrentDate(){
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return today.format(formatter);
     }
 }

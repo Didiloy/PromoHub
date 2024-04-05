@@ -204,9 +204,21 @@
                 android:backgroundTint="?attr/colorTertiary"
                 android:text="@string/share"
                 android:textColor="?attr/colorOnTertiary"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/own_game_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <Button
+                android:id="@+id/own_game_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="?attr/colorPrimaryContainer"
+                android:text="@string/i_own_the_game"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                app:layout_constraintBottom_toTopOf="@+id/button_view_deal_in_browser"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/share_button" />
 
             <Button
                 android:id="@+id/button_view_deal_in_browser"

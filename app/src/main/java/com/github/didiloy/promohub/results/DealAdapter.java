@@ -60,6 +60,10 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
         }
         holder.deal_price.setText(price + "$");
 
+        if(deals[position].saved_date != null){
+            holder.deal_saved_date.setText(deals[position].saved_date);
+        }
+
         //image
         String imageUrl = deals[position].thumb;
         Glide.with(holder.itemView.getContext()).load(imageUrl)
@@ -85,6 +89,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
         TextView textview_game_title;
         TextView textview_deal_store;
         TextView deal_price;
+        TextView deal_saved_date;
         CardView cardView_deal_item;
 
         public ViewHolder(@NonNull android.view.View itemView) {
@@ -94,6 +99,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
             textview_game_title = itemView.findViewById(R.id.textview_game_title);
             textview_deal_store = itemView.findViewById(R.id.textview_deal_store);
             deal_price = itemView.findViewById(R.id.deal_price);
+            deal_saved_date = itemView.findViewById(R.id.deal_saved_date);
         }
     }
 }
