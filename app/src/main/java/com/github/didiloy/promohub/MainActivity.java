@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.github.didiloy.promohub.database.AppDatabase;
 import com.github.didiloy.promohub.results.AllDealsActivity;
+import com.github.didiloy.promohub.results.OwnedDealsActivity;
 import com.github.didiloy.promohub.results.SavedDealsActivity;
 import com.github.didiloy.promohub.search.SearchActivity;
 import com.github.didiloy.promohub.select_store.SelectStoreActivity;
@@ -80,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonShowSavedDealsClick(View view) {
         Intent intent = new Intent(this, SavedDealsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonShowOwnedGames(View view) {
+        Intent intent = new Intent(this, OwnedDealsActivity.class);
         startActivity(intent);
     }
 

@@ -7,10 +7,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {DealEntity.class},
+@Database(entities = {DealEntity.class, OwnedGame.class},
         version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DealDao dealDao();
+    public abstract OwnedGameDao ownedGameDao();
 
     private static final String DATABASE_NAME = "PromoHub.db";
     private static AppDatabase INSTANCE;

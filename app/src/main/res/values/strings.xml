@@ -67,4 +67,7 @@
     <string name="share_using">Share using</string>
     <string name="share_text">Take a look at this deal I found on PromoHub !</string>
     <string name="i_own_the_game">I own the game</string>
+    <string name="see_owned_games">See owned games</string>
+    <string name="owned_games">Owned games</string>
+    <string name="no_saved_games">No saved games</string>
 </resources>

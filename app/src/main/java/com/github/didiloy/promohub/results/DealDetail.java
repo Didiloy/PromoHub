@@ -27,6 +27,8 @@ import com.github.didiloy.promohub.api.SteamGridDb;
 import com.github.didiloy.promohub.database.AppDatabase;
 import com.github.didiloy.promohub.database.DealDao;
 import com.github.didiloy.promohub.database.DealEntity;
+import com.github.didiloy.promohub.database.OwnedGame;
+import com.github.didiloy.promohub.database.OwnedGameDao;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -145,8 +147,10 @@ public class DealDetail extends AppCompatActivity {
         });
 
         own_game_button.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getInstance();
+            OwnedGameDao gameDao = db.ownedGameDao();
             new Thread(() -> {
-                //TODO
+                gameDao.insertOwnedGame(OwnedGame.fromDeal(deal));
                 runOnUiThread(() -> {
                     Toast.makeText(this, getString(R.string.deal_saved), Toast.LENGTH_SHORT).show();
                 });
