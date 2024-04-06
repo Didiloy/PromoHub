@@ -150,6 +150,10 @@ public class DealDetail extends AppCompatActivity {
             AppDatabase db = AppDatabase.getInstance();
             OwnedGameDao gameDao = db.ownedGameDao();
             new Thread(() -> {
+                //if we searched for the game some fields are empty so we must fill them
+                if(deal.title == null || deal.title.isEmpty()){
+                    deal.title = deal.external;
+                }
                 gameDao.insertOwnedGame(OwnedGame.fromDeal(deal));
                 runOnUiThread(() -> {
                     Toast.makeText(this, getString(R.string.deal_saved), Toast.LENGTH_SHORT).show();
