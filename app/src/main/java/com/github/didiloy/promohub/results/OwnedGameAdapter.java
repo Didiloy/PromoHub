@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -61,11 +62,12 @@ public class OwnedGameAdapter extends RecyclerView.Adapter<OwnedGameAdapter.View
             th.start();
             try {
                 th.join();
+                games.remove(position);
+                notifyItemRemoved(position);
             } catch (InterruptedException e) {
                 MainActivity.logger.severe("Failed to delete game.");
+                Toast.makeText(context, "Failed to delete game", Toast.LENGTH_SHORT).show();
             }
-            games.remove(position);
-            notifyItemRemoved(position);
         });
     }
 
