@@ -13,17 +13,23 @@
 - [[#Application en cours d'exécution|Application en cours d'exécution]]
 	- [[#Page d’accueil|Page d’accueil]]
 	- [[#Personnaliser la recherche|Personnaliser la recherche]]
-		- [[#Personnaliser la recherche#Sélection des magasins|Sélection des magasins]]
-		- [[#Personnaliser la recherche#Paramètres des deals|Paramètres des deals]]
-		- [[#Personnaliser la recherche#Paramètres des prix des deals|Paramètres des prix des deals]]
-		- [[#Personnaliser la recherche#Résultats de la recherche|Résultats de la recherche]]
+	- [[#Personnaliser la recherche#Sélection des magasins|Sélection des magasins]]
+	- [[#Personnaliser la recherche#Paramètres des deals|Paramètres des deals]]
+	- [[#Personnaliser la recherche#Paramètres des prix des deals|Paramètres des prix des deals]]
+	- [[#Personnaliser la recherche#Résultats de la recherche|Résultats de la recherche]]
 	- [[#Détail d'un deal|Détail d'un deal]]
 	- [[#Deals enregistré|Deals enregistré]]
+	- [[#Jeux possédés|Jeux possédés]]
 	- [[#Tout les deals|Tout les deals]]
 	- [[#Recherche|Recherche]]
 	- [[#Paramètres|Paramètres]]
-- [[#Difficultés rencontrées|Difficultés rencontrées]]
 - [[#Arborescence|Arborescence]]
+	- [[#API|API]]
+	- [[#Database|Database]]
+	- [[#Results|Results]]
+	- [[#Utils|Utils]]
+	- [[#Le reste|Le reste]]
+
 
 ## Objectif de l'application
 
@@ -34,6 +40,12 @@ Les fonctionnalités clés de l'application incluent la possibilité de recherch
 Promohub vise à simplifier le processus de recherche de bonnes affaires pour les jeux vidéo en centralisant les informations pertinentes et en offrant des options de filtrage avancées. En permettant aux utilisateurs de trouver rapidement et facilement les meilleures offres disponibles, l'application vise à améliorer l'expérience d'achat de jeux vidéo et à aider les joueurs à réaliser des économies significatives.  
 
 ## Conception
+Pendant l'étape de conception du projet nous avons considérés plusieurs APIs:  
+- [CheapShark](https://apidocs.cheapshark.com/)
+- [IsThereAnyDeal](https://docs.isthereanydeal.com/)
+- [Games-Deals-API](https://github.com/MohamedAmgd/Game-Deals-API)  
+
+Nous avons décidés d'utiliser celle de CheapShark car c'est celle qui correspondait le mieux à nos besoins tout en étant la plus simple d'utilisation (pas besoin de clé, ni de compte).
 
 ## Application en cours d'exécution
 #### Page d’accueil
@@ -110,9 +122,15 @@ Depuis la page d'accueil nous pouvons accéder aux deals enregistrés.
 ```
 Nous voyons sur l'image de gauche que si nous n'avons pas de deal sauvegardé, le titre nous l'affiche. Sinon la liste des deals sauvegarder est affichée et nous pouvons y accéder de la même manière que les deals de la recherche.
 
+#### Jeux possédés
+![[owned_games.jpeg|350]]  
+Depuis la page d'accueil nous pouvons aussi accéder aux jeux possédés. L'utilisateur peut enregistrer des jeux en tant que jeux possédés pour ne pas les voir dans les résultats des deals. Il peut modifier ce comportement dans la page des paramètres
+
 #### Tout les deals
 Depuis la page d'accueil lorsque l'on appuie sur le bouton "voir tout les deals", nous voyons les 60 deals les plus récent renvoyés par l'API, indépendamment de tous paramètres.
->[!info] La taille maximale d'une page de deal fournie par l'API de CheapShark est de 60 deals
+>[!info] La taille maximale d'une page de deal fournie par l'API de CheapShark est de 60 deals  
+
+
 ```image-layout-a
 ![[all_deals.jpeg]]
 ![[all_deals_doublons.jpeg]]
@@ -131,9 +149,8 @@ Nous pouvons aussi rechercher des deals sur des jeux. On peut rentrer le nom du 
 ![[settings.jpeg]]
 ![[settings_suite.jpeg]]
 ```
-Enfin nous avons une page de paramètres dans laquelle l'utilisateur peut sélectionner si il veut enregistrer ses paramètres de recherche à chaque fois qu'il les changes. Nous affichons aussi un avis aux utilisateurs expliquant comment sont récupérés les deals et créditons les auteurs des assets que nous utilisons.
+Enfin nous avons une page de paramètres dans laquelle l'utilisateur peut sélectionner si il veut enregistrer ses paramètres de recherche à chaque fois qu'il les changes, et si il veut afficher les jeux qu'il possède dans les résultats. Nous affichons aussi un avis aux utilisateurs expliquant comment sont récupérés les deals et créditons les auteurs des assets que nous utilisons.
 
-## Difficultés rencontrées
 ## Arborescence
 La structure globale de l'arborescence du code est la suivante:
 ```
