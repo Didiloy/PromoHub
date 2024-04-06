@@ -70,4 +70,5 @@
     <string name="see_owned_games">See owned games</string>
     <string name="owned_games">Owned games</string>
     <string name="no_saved_games">No saved games</string>
+    <string name="hide_owned_deals">Hide owned games from results</string>
 </resources>

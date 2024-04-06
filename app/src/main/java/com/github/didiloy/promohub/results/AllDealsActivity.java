@@ -16,6 +16,7 @@ import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
 import com.github.didiloy.promohub.api.CheapShark;
 import com.github.didiloy.promohub.api.Deal;
+import com.github.didiloy.promohub.settings.DataStoreSingleton;
 
 public class AllDealsActivity extends AppCompatActivity {
 
@@ -44,6 +45,9 @@ public class AllDealsActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Failed to fetch deals", Toast.LENGTH_SHORT);
                 toast.show();
                 return;
+            }
+            if(DataStoreSingleton.getInstance(this).getBoolValue("HIDE_OWNED_GAMES")){
+                deals = CheapShark.filterOwnedGames(deals);
             }
             runOnUiThread(() -> {
                 progressBar.setVisibility(ProgressBar.GONE);

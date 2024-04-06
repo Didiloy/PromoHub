@@ -64,4 +64,5 @@
     <string name="see_owned_games">Voir les jeux que je possède</string>
     <string name="owned_games">Jeux possédés</string>
     <string name="no_saved_games">Pas de jeux sauvegardés</string>
+    <string name="hide_owned_deals">Masquer les jeux possédés des résultats de recherche</string>
 </resources>

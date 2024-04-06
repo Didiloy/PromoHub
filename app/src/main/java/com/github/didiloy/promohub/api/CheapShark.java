@@ -4,8 +4,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.didiloy.promohub.MainActivity;
 import com.github.didiloy.promohub.R;
+import com.github.didiloy.promohub.database.AppDatabase;
+import com.github.didiloy.promohub.database.OwnedGame;
+import com.github.didiloy.promohub.database.OwnedGameDao;
 import com.github.didiloy.promohub.select_store.StoreAdapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
@@ -58,6 +62,19 @@ public class CheapShark {
             executorService.shutdown();
         }
         return deals;
+    }
+
+    public static Deal[] filterOwnedGames(Deal[] deals){
+        AppDatabase db = AppDatabase.getInstance();
+        OwnedGameDao ownedGameDao = db.ownedGameDao();
+        ArrayList<OwnedGame> ownedGameEntities = (ArrayList<OwnedGame>) ownedGameDao.getAll();
+        if (ownedGameEntities == null || ownedGameEntities.isEmpty()) {
+            return deals;
+        }
+        return Arrays.stream(deals)
+                .filter(deal -> ownedGameEntities.stream()
+                        .noneMatch(ownedGame -> ownedGame.name.equals(deal.title)))
+                .toArray(Deal[]::new);
     }
 
     public static Deal[] getDeals() {

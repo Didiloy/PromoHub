@@ -24,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout_source_code;
 
     SwitchMaterial switch_save_deal;
+    SwitchMaterial switch_hide_owned_games;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,12 @@ public class SettingsActivity extends AppCompatActivity {
         switch_save_deal.setChecked(DataStoreSingleton.getInstance(this).getBoolValue("SAVE_SETTINGS"));
         switch_save_deal.setOnCheckedChangeListener((view, state)->{
             DataStoreSingleton.getInstance(this).setBoolValue("SAVE_SETTINGS", state);
+        });
+
+        switch_hide_owned_games = findViewById(R.id.switch_hide_owned_games);
+        switch_hide_owned_games.setChecked(DataStoreSingleton.getInstance(this).getBoolValue("HIDE_OWNED_GAMES"));
+        switch_hide_owned_games.setOnCheckedChangeListener((view, state)->{
+            DataStoreSingleton.getInstance(this).setBoolValue("HIDE_OWNED_GAMES", state);
         });
     }
 

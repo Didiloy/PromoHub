@@ -20,6 +20,7 @@ import com.github.didiloy.promohub.api.DealFetcherCallable;
 import com.github.didiloy.promohub.api.Store;
 import com.github.didiloy.promohub.api.StoreFetcherCallable;
 import com.github.didiloy.promohub.select_store.StoreAdapter;
+import com.github.didiloy.promohub.settings.DataStoreSingleton;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
@@ -76,6 +77,9 @@ public class ResultsActivity extends AppCompatActivity {
             if (deals == null) {
                 MainActivity.logger.severe("Failed to fetch deals");
                 return;
+            }
+            if(DataStoreSingleton.getInstance(this).getBoolValue("HIDE_OWNED_GAMES")){
+                deals = CheapShark.filterOwnedGames(deals);
             }
             runOnUiThread(() -> {
                 progressBar.setVisibility(ProgressBar.GONE);
